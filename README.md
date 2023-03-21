@@ -3,15 +3,15 @@ This repository contains the project for SWE573 Software Development Practice - 
 
 ## To do:
 ### Week 1:
-- ~~Add  issue labels~~
-- ~~Create issues~~
-- Add contributors
-- ~~Study Wikidata and take notes on repo wiki~~
+- [x] Add  issue labels
+- [x] Create issues
+- [ ] Add contributors
+- [x] Study Wikidata and take notes on repo wiki
 ### Week 2:
-- ~~Elicit a personal story for webpage~~
-- Elicit requirements
+- [x] Elicit a personal story for webpage
+- [ ] Elicit requirements
 ### Week 3:
-- Create mockup of webpage
-- Formalize requirements
+- [ ] Create mockup of webpage
+- [ ] Formalize requirements
 ### Week 4:
-- Create webpage using Django and PostgreSQL
+- [ ] Create webpage using Django and PostgreSQL
