@@ -9,9 +9,9 @@ This repository contains the project for SWE573 Software Development Practice - 
 - [x] Study Wikidata and take [notes](https://github.com/dbaslan/SWE573-DBA/wiki/Notes-on-Wikidata) on repo wiki 
 ### Week 2:
 - [x] Elicit [a personal story](https://github.com/dbaslan/SWE573-DBA/wiki/A-Story) for webpage
-- [ ] Elicit requirements
+- [ ] Elicit [requirements](https://github.com/dbaslan/SWE573-DBA/wiki/Requirements)
 ### Week 3:
 - [ ] Create mockup of webpage
-- [ ] Formalize requirements
+- [ ] Formalize [requirements](https://github.com/dbaslan/SWE573-DBA/wiki/Requirements)
 ### Week 4:
 - [ ] Create webpage using Django and PostgreSQL
