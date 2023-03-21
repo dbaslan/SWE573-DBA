@@ -5,6 +5,13 @@ Project for SWE573 2022/2023-2
 ### Week 1:
 - ~~Add  issue labels~~
 - ~~Create issues~~
-- do research
-- fill wiki
-- find a story for requirements elicitation???
+- Add contributors
+- Study Wikidata and take notes on repo wiki
+### Week 2:
+- Elicit a personal story for webpage
+- Elicit requirements
+### Week 3:
+- Create mockup of webpage
+- Come up with requirements
+### Week 4:
+- Create webpage using Django and PostgreSQL
