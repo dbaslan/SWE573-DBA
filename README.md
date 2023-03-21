@@ -12,6 +12,6 @@ This repository contains the project for SWE573 Software Development Practice - 
 - Elicit requirements
 ### Week 3:
 - Create mockup of webpage
-- Come up with requirements
+- Formalize requirements
 ### Week 4:
 - Create webpage using Django and PostgreSQL
