@@ -8,7 +8,7 @@ This repository contains the project for SWE573 Software Development Practice - 
 - Add contributors
 - ~~Study Wikidata and take notes on repo wiki~~
 ### Week 2:
-- Elicit a personal story for webpage
+- ~~Elicit a personal story for webpage~~
 - Elicit requirements
 ### Week 3:
 - Create mockup of webpage
