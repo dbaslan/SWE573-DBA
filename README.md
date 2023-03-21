@@ -3,12 +3,12 @@ This repository contains the project for SWE573 Software Development Practice - 
 
 ## To do:
 ### Week 1:
-- [x] Add  issue labels
-- [x] Create issues
+- [x] Add issue [labels](https://github.com/dbaslan/SWE573-DBA/wiki/Issue-Labels)
+- [x] Create [issues](https://github.com/dbaslan/SWE573-DBA/issues)
 - [ ] Add contributors
-- [x] Study Wikidata and take notes on repo wiki
+- [x] Study Wikidata and take [notes](https://github.com/dbaslan/SWE573-DBA/wiki/Notes-on-Wikidata) on repo wiki 
 ### Week 2:
-- [x] Elicit a personal story for webpage
+- [x] Elicit [a personal story](https://github.com/dbaslan/SWE573-DBA/wiki/A-Story) for webpage
 - [ ] Elicit requirements
 ### Week 3:
 - [ ] Create mockup of webpage
