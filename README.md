@@ -17,4 +17,4 @@ This repository contains the project for SWE573 Software Development Practice - 
 - [x] Revise [mockups](https://github.com/dbaslan/SWE573-DBA/wiki/Mockup) and add details
 - [x] Go over Django and PostgreSQL for web application development
 ### Week 5:
-- [ ] Start building webpage
+- [x] Start building webpage
