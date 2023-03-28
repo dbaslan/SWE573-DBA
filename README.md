@@ -18,3 +18,5 @@ This repository contains the project for SWE573 Software Development Practice - 
 - [x] Go over Django and PostgreSQL for web application development
 ### Week 5:
 - [x] Start building webpage
+### Week 6:
+- [ ] Create UML diagrams
