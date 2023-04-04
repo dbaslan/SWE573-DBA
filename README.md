@@ -19,4 +19,4 @@ This repository contains the project for SWE573 Software Development Practice - 
 ### Week 5:
 - [x] Start building webpage
 ### Week 6:
-- [x] Create UML diagram
+- [x] Create [UML diagram](https://github.com/dbaslan/SWE573-DBA/wiki/UML-Diagrams)
