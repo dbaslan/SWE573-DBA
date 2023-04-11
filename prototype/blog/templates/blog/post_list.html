@@ -7,20 +7,18 @@
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
-        <header>
-            <h1><a href="/">My Blog</a></h1>
+        <header class="page-header">
+            <div class="container">
+                <h1><a href="/">My Blog</a></h1>
+            </div>
         </header>
-
-        <article>
-            <time>published: 11.04.2023, 14:07</time>
-            <h2><a href="">My first post</a></h2>
-            <p>I liek chocolate milk!</p>
-        </article>
-
-        <article>
-            <time>published: 11.04.2023, 14:08</time>
-            <h2><a href="">My second post</a></h2>
-            <p>I like trains.</p>
-        </article>
+        
+        {% for post in posts %}
+            <article class="post">
+                <time>published: {{ post.published_date }}</time>
+                <h2><a href="">{{ post.title }}</a></h2>
+                <p>{{ post.text|linebreaksbr }}</p>
+            </article>
+        {% endfor %}
     </body>
 </html>
