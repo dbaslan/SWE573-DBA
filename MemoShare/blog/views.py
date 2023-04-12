@@ -41,3 +41,12 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+
+def search_post(request):
+    if request.method == "POST":
+        query_title = request.POST.get("title", None)
+        if query_title:
+            results = Post.objects.filter(title__contains=query_title)
+            return render(request, 'post_search.html', {"results":results})
+
+    return render(request, 'post_search.html')
