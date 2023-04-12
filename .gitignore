@@ -279,3 +279,6 @@ startbootstrap-clean-blog-gh-pages/
 requirements.txt
 db.rar
 MemoShare/data.json
+
+# Code snippets #
+snippets/
