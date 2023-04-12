@@ -42,7 +42,7 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
 
-def search_post(request):
+def post_search(request):
     if request.method == "POST":
         query_title = request.POST.get("title", None)
         if query_title:
