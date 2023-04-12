@@ -2,3 +2,30 @@ body {
     background-color: lightblue;
     font-family: "Roboto";
 }
+
+.cloud{ 
+    width:350px;
+    height:120px;
+    background:#ECEFF1;
+ }
+
+.cloud:after, .cloud:before{
+    content:"";
+    position:relative;
+    display:inline-block;
+    background:inherit;
+    border-radius:inherit;
+}
+
+.cloud::after{
+    width:100px;
+    height:100px;
+    top:-220px;
+    left:50px;
+}
+.cloud::before{
+    width:180px;
+    height:180px;
+    top: -70px;
+    left:130px;
+}
