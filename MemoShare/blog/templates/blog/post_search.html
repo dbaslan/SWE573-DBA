@@ -1,8 +1,10 @@
 {% extends 'blog/base.html' %}
 
+{% load static %}
+
 {% block content %}
     <h1>Advanced Search</h1>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/advanced_search.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/advanced_search.css" %}">
     
     <form action="/search" method="POST">
         {% csrf_token %} 
