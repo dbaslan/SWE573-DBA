@@ -1,11 +1,46 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+    
+    <form action="/search" method="POST">
+        {% csrf_token %} 
+        <label for="text1">Title</label>
+        <input type="text" name="title" id="text1" placeholder="Text">
+        <input type="submit" name="submit" value="Search">
+    </form>
+    <br>
+
+    <form action="/search" method="POST">
+        {% csrf_token %} 
+        <label for="text2">Content</label>
+        <input type="text" name="text" id="text2" placeholder="Text">
+        <input type="submit" name="submit" value="Search">
+    </form>
+    <br>
+
+    <form action="/search" method="POST">
+        {% csrf_token %} 
+        <label for="text3">Author</label>
+        <input type="text" name="author" id="text3" placeholder="Username">
+        <input type="submit" name="submit" value="Search">
+    </form>
+    <br>
+
+    <p>Date of Memory</p>
     <form action="/search" method="POST">
         {% csrf_token %} 
         <input type="text" name="name">
         <input type="submit" name="submit" value="Search">
     </form>
+    <br>
+
+    <p>Location of Memory</p>
+    <form action="/search" method="POST">
+        {% csrf_token %} 
+        <input type="text" name="name">
+        <input type="submit" name="submit" value="Search">
+    </form>
+    <br>
 
     {% for result in results %}
 
