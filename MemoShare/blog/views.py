@@ -47,6 +47,6 @@ def post_search(request):
         query_title = request.POST.get("title", None)
         if query_title:
             results = Post.objects.filter(title__contains=query_title)
-            return render(request, 'post_search.html', {"results":results})
+            return render(request, 'blog/post_search.html', {"results":results})
 
     return render(request, 'post_search.html')
