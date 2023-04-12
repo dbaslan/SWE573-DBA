@@ -52,4 +52,4 @@ def post_search(request):
     return render(request, 'blog/post_search.html')
 
 def about(request):
-    return redirect(request, 'blog/about.html')
+    return render(request, 'blog/about.html')
