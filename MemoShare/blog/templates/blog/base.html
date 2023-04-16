@@ -27,7 +27,7 @@
             }
         </style>
 
-        <link href="headers.css" rel="stylesheet">
+        <link href="{% static "css/headers.css" %}" rel="stylesheet">
     </head>
     
     <body>
@@ -40,7 +40,10 @@
                   </a>
           
                   <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="/"><img src="static/MemoShareLogo.png" width="400" height="80"></a></li>
+                    <li><a href="/"><img src="static/MemoShareLogo2.png" width="400" height="66"></a></li>
+                    <!--<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                        <img src="static/MemoShareLogo2.png" width="400" height="80"></img>
+                    </a>-->
                     <li><a href="/about" class="nav-link px-2 link-dark">About</a></li>
                     <li><a href="/search" class="nav-link px-2 link-dark">Advanced Search</a></li>
                     <!--<li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
