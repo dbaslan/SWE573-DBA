@@ -57,7 +57,7 @@ def post_search(request):
     query = request.GET.get("q", default="")
     results = Post.objects.filter(Q(title__icontains=query) | Q(text__icontains=query))
     context = {'results': results, 'query': query}
-    return render(request, 'post_search.html', context)
+    return render(request, 'blog/post_search.html', context)
 
 def about(request):
     return render(request, 'blog/about.html')
