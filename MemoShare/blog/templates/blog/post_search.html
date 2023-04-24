@@ -54,9 +54,15 @@
     </form>
     <br>
 
-    {% for result in results %}
-
-        <p>{{result.name}}</p>
-
-    {% endfor %}
+    <h1>Search Results for "{{ query }}"</h1>
+    {% if results %}
+        <ul>
+        {% for post in results %}
+            <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+    
 {% endblock %}
