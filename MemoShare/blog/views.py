@@ -42,7 +42,7 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
-
+""""
 def post_search(request):
     if request.method == "POST":
         query_title = request.POST.get("title", None)
@@ -51,6 +51,13 @@ def post_search(request):
             return render(request, 'post_search.html', {"results":results})
 
     return render(request, 'blog/post_search.html')
+"""
+
+def post_search(request):
+    query = request.GET.get('q')
+    results = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
+    context = {'results': results, 'query': query}
+    return render(request, 'post_search.html', context)
 
 def about(request):
     return render(request, 'blog/about.html')
