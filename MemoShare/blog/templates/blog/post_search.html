@@ -6,53 +6,41 @@
     <h1>Advanced Search</h1>
     <link rel="stylesheet" type="text/css" href="{% static "css/advanced_search.css" %}">
 
+
+
     <div style="display: flex;">
-    
-        <form action="/search" method="POST">
-            {% csrf_token %} 
-            <label for="text1">Title</label>
-            <input type="text" name="title" id="text1" placeholder="Text">
-            <input type="submit" name="submit" value="Search">
-        </form>
-        <br>
 
-        <form action="/search" method="POST">
-            {% csrf_token %} 
-            <label for="text2">Content</label>
-            <input type="text" name="text" id="text2" placeholder="Text">
-            <input type="submit" name="submit" value="Search">
+        <form action="/search" method="get">
+            <label for="title">Search title:</label>
+            <input type="text" name="title" value="{{ title_query }}" placeholder="Title"><br>
+            <label for="content">Search content:</label>
+            <input type="text" name="content" value="{{ content_query }}" placeholder="Content"><br>
+            <label for="author">Search author:</label>
+            <input type="text" name="author" value="{{ author_query }}" placeholder="Author"><br>
+            <button type="submit">Search</button>
         </form>
-        <br>
-
-        <form action="/search" method="POST">
-            {% csrf_token %} 
-            <label for="text3">Author</label>
-            <input type="text" name="author" id="text3" placeholder="Username">
-            <input type="submit" name="submit" value="Search">
-        </form>
-        <br>
-
-        <form action="/search" method="POST">
-            {% csrf_token %} 
+ 
+        <form action="/search" method="get">
             <label for="text4">Tags</label>
-            <input type="text" name="name">
-            <input type="submit" name="submit" value="Search">
+            <input type="text" name="tag" value="{{ tag_query }}" placeholder="Tag">
+            <br>
+            <button type="submit">Search</button>
         </form>
         <br>
 
-        <form action="/search" method="POST">
-            {% csrf_token %} 
+        <form action="/search" method="get">
             <label for="text5">Date of Memory</label>
-            <input type="text" name="name">
-            <input type="submit" name="submit" value="Search">
+            <input type="text" name="date" value="{{ date_query }}" placeholder="Date">
+            <br>
+            <button type="submit">Search</button>
         </form>
         <br>
 
-        <form action="/search" method="POST">
-            {% csrf_token %} 
+        <form action="/search" method="get">
             <label for="text6">Location of Memory</label>
-            <input type="text" name="name">
-            <input type="submit" name="submit" value="Search">
+            <input type="text" name="location" value="{{ location_query }}" placeholder="Location">
+            <br>
+            <button type="submit">Search</button>
         </form>
         <br>
 
