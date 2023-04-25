@@ -57,7 +57,7 @@ def post_search(request):
         results = results.filter(
             Q(title__icontains=query) |
             Q(text__icontains=query) |
-            Q(author__icontains=query) |
+            Q(author__username__icontains=query) |
             Q(tag__name=query)
             #Q(date__icontains=query) |
             #Q(location__icontains=query) |
@@ -68,7 +68,7 @@ def post_search(request):
     if tag_query:
         results = results.filter(date__icontains=tag_query)
     if author_query:
-        results = results.filter(author__icontains=author_query)
+        results = results.filter(author__username__icontains=user_query)
 
     context = {
         'results': results,
