@@ -9,7 +9,8 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     text = models.TextField(max_length=3000)
     created_date = models.DateTimeField(default=timezone.now)
-    memory_date = models.DateTimeField(blank=True, null=True)
+    likes = models.IntegerField(default=0)
+    #memory_date = models.DateTimeField(blank=True, null=True)
 
     def publish(self):
         self.published_date = timezone.now()
