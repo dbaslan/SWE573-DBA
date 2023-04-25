@@ -5,54 +5,65 @@
 {% block content %}
     <h1>Advanced Search</h1>
     <link rel="stylesheet" type="text/css" href="{% static "css/advanced_search.css" %}">
+
+    <div style="display: flex;">
     
-    <form action="/search" method="POST">
-        {% csrf_token %} 
-        <label for="text1">Title</label>
-        <input type="text" name="title" id="text1" placeholder="Text">
-        <input type="submit" name="submit" value="Search">
-    </form>
-    <br>
+        <form action="/search" method="POST">
+            {% csrf_token %} 
+            <label for="text1">Title</label>
+            <input type="text" name="title" id="text1" placeholder="Text">
+            <input type="submit" name="submit" value="Search">
+        </form>
+        <br>
 
-    <form action="/search" method="POST">
-        {% csrf_token %} 
-        <label for="text2">Content</label>
-        <input type="text" name="text" id="text2" placeholder="Text">
-        <input type="submit" name="submit" value="Search">
-    </form>
-    <br>
+        <form action="/search" method="POST">
+            {% csrf_token %} 
+            <label for="text2">Content</label>
+            <input type="text" name="text" id="text2" placeholder="Text">
+            <input type="submit" name="submit" value="Search">
+        </form>
+        <br>
 
-    <form action="/search" method="POST">
-        {% csrf_token %} 
-        <label for="text3">Author</label>
-        <input type="text" name="author" id="text3" placeholder="Username">
-        <input type="submit" name="submit" value="Search">
-    </form>
-    <br>
+        <form action="/search" method="POST">
+            {% csrf_token %} 
+            <label for="text3">Author</label>
+            <input type="text" name="author" id="text3" placeholder="Username">
+            <input type="submit" name="submit" value="Search">
+        </form>
+        <br>
 
-    <p>Tags</p>
-    <form action="/search" method="POST">
-        {% csrf_token %} 
-        <input type="text" name="name">
-        <input type="submit" name="submit" value="Search">
-    </form>
-    <br>
+        <p>Tags</p>
+        <form action="/search" method="POST">
+            {% csrf_token %} 
+            <input type="text" name="name">
+            <input type="submit" name="submit" value="Search">
+        </form>
+        <br>
 
-    <p>Date of Memory</p>
-    <form action="/search" method="POST">
-        {% csrf_token %} 
-        <input type="text" name="name">
-        <input type="submit" name="submit" value="Search">
-    </form>
-    <br>
+        <p>Date of Memory</p>
+        <form action="/search" method="POST">
+            {% csrf_token %} 
+            <input type="text" name="name">
+            <input type="submit" name="submit" value="Search">
+        </form>
+        <br>
 
-    <p>Location of Memory</p>
-    <form action="/search" method="POST">
-        {% csrf_token %} 
-        <input type="text" name="name">
-        <input type="submit" name="submit" value="Search">
-    </form>
-    <br>
+        <p>Location of Memory</p>
+        <form action="/search" method="POST">
+            {% csrf_token %} 
+            <input type="text" name="name">
+            <input type="submit" name="submit" value="Search">
+        </form>
+        <br>
+
+    </div>
+
+    <div id='mapid' style='width: 500px; height: 400px;'></div>
+    <script>
+        var mymap = L.map('mapid').setView([48.083000375950064, 16.43795547510649], 3);
+        L.tileLayer('https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=v0jOfF9m0PzFluCn6puv6013nOmcU1vkFsUGKaYExW8OIs8tAsu8YgN4WYGEppYL', {}).addTo(mymap);
+        mymap.attributionControl.addAttribution("<a href=\"https://www.jawg.io\" target=\"_blank\">&copy; Jawg</a> - <a href=\"https://www.openstreetmap.org\" target=\"_blank\">&copy; OpenStreetMap</a>&nbsp;contributors")
+    </script>
 
     <h1>Search Results for "{{ query }}"</h1>
     {% if results %}
