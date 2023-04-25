@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    text = models.TextField(max_length=3000)
+    text = models.TextField(max_length=30000)
     posted_date = models.DateTimeField(default=timezone.now)
     likes = models.IntegerField(default=0)
     #memory_date = models.DateTimeField(blank=True, null=True)
@@ -20,7 +20,7 @@ class Post(models.Model):
         return self.title
 
 class Comment(models.Model):
-    content = models.TextField(max_length=1000)
+    content = models.TextField(max_length=3000)
     posted_date = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     post_connected = models.ForeignKey(Post, on_delete=models.CASCADE)
