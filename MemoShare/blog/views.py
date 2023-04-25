@@ -66,7 +66,7 @@ def post_search(request):
     if text_query:
         results = results.filter(text__icontains=text_query)
     if tag_query:
-        results = results.filter(tags__name__icontains=tag_query)
+        results = results.filter(tags__name__=tag_query)
     if author_query:
         results = results.filter(author__username__icontains=author_query)
 
