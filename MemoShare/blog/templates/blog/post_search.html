@@ -32,25 +32,25 @@
         </form>
         <br>
 
-        <p>Tags</p>
         <form action="/search" method="POST">
             {% csrf_token %} 
+            <label for="text4">Tags</label>
             <input type="text" name="name">
             <input type="submit" name="submit" value="Search">
         </form>
         <br>
 
-        <p>Date of Memory</p>
         <form action="/search" method="POST">
             {% csrf_token %} 
+            <label for="text5">Date of Memory</label>
             <input type="text" name="name">
             <input type="submit" name="submit" value="Search">
         </form>
         <br>
 
-        <p>Location of Memory</p>
         <form action="/search" method="POST">
             {% csrf_token %} 
+            <label for="text6">Location of Memory</label>
             <input type="text" name="name">
             <input type="submit" name="submit" value="Search">
         </form>
