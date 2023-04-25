@@ -3,6 +3,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+class Tag(models.Model):
+    name = models.CharField(max_length=32)
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -11,6 +13,7 @@ class Post(models.Model):
     posted_date = models.DateTimeField(default=timezone.now)
     likes = models.IntegerField(default=0)
     #memory_date = models.DateTimeField(blank=True, null=True)
+    tags = models.ManyToManyField(Tag)
 
     def publish(self):
         self.published_date = timezone.now()
