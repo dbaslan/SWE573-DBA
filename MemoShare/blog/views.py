@@ -42,16 +42,6 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
-""""
-def post_search(request):
-    if request.method == "POST":
-        query_title = request.POST.get("title", None)
-        if query_title:
-            results = Post.objects.filter(title__contains=query_title)
-            return render(request, 'post_search.html', {"results":results})
-
-    return render(request, 'blog/post_search.html')
-"""
 
 def post_search(request):
     query = request.GET.get("q", default="")
