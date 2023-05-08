@@ -54,7 +54,7 @@
                     {% if user.is_authenticated %}
                       <p>Welcome, {{ user.username }}! (<a href="{% url 'about' %}">Logout</a>)</p>
                     {% else %}
-                      <p><a href="{% url 'about' %}">Login</a> / <a href="{% url 'user_register' %}">Register</a></p>
+                      <p><a href="{% url 'user_login' %}">Login</a> / <a href="{% url 'user_register' %}">Register</a></p>
                     {% endif %}
                     <!--<li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
                     <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>-->
