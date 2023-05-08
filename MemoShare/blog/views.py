@@ -98,3 +98,10 @@ def user_login(request):
     else:
         form = AuthenticationForm()
     return render(request, 'blog/login.html', {'form': form})
+
+def user_profile(request):
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    posts = Post.objects.filter(author=user).order_by('posted_date')
+    context = {'user': user, 'profile': profile, 'posts': posts}
+    return render(request, 'profile.html', context)
