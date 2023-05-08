@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import Post, Profile
 from .forms import PostForm
@@ -111,7 +111,7 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     messages.info(request, "You have logged out successfully.") 
-    return redirect('blog/post_list.html')
+    return redirect('about')
 
 def user_profile(request):
     user = request.user
