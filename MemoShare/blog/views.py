@@ -30,6 +30,14 @@ def post_new(request):
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
 
+def post_new(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        post = Post.objects.create(title=title, content=content, author=request.user)
+        return redirect('view_post', pk=post.pk)
+    return render(request, 'create_post.html')
+
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
@@ -86,7 +94,7 @@ def user_register(request):
             return redirect('profile')
     else:
         form = UserCreationForm()
-    return render(request, 'blog/register.html', {'form': form})
+    return render(request, 'blog/user_register.html', {'form': form})
 
 def user_login(request):
     if request.method == 'POST':
