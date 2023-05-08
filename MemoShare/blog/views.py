@@ -44,8 +44,8 @@ def post_edit(request, pk):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 def post_search(request):
-    query = request.GET.get("q", default="")
-    text_query = request.GET.get("text", default="")
+    query = request.GET.get("q")
+    text_query = request.GET.get("text")
     author_query = request.GET.get("author", default="")
     tag_query = request.GET.get("tag", default="")
     #date_query = request.GET.get("date", default="")
@@ -54,15 +54,7 @@ def post_search(request):
     results = Post.objects.all()
 
     if query:
-        results = results.filter(
-            Q(title__icontains=query) |
-            Q(text__icontains=query) |
-            Q(author__username__icontains=query) |
-            Q(tag__name=query)
-            #Q(date__icontains=query) |
-            #Q(location__icontains=query) |
-        )
-    
+        results = results.filter(title__icontains=text_query)
     if text_query:
         results = results.filter(text__icontains=text_query)
     if tag_query:
