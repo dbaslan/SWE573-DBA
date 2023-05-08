@@ -110,6 +110,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
+    messages.info(request, "You have logged out successfully.") 
     return redirect('blog/post_list.html')
 
 def user_profile(request):
