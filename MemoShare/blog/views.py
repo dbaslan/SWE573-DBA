@@ -109,6 +109,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
+    return redirect('blog/post_list.html')
 
 def user_profile(request):
     user = request.user
