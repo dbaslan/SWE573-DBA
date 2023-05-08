@@ -44,20 +44,26 @@ def post_edit(request, pk):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 def post_search(request):
-    query = request.GET.get("q", default="")
-    author_query = request.GET.get("author", default="")
-    tag_query = request.GET.get("tag", default="")
+    query = request.GET.get("q", "")
+    author_query = request.GET.get("author", "")
+    tag_query = request.GET.get("tag", "")
     #date_query = request.GET.get("date", default="")
     #location_query = request.GET.get("location", default="")
 
+    empty = True
     results = Post.objects.all()
 
     if query:
         results = results.filter(Q(title__icontains=query) | Q(text__icontains=query))
+        empty = False
     if tag_query:
         results = results.filter(tags__name__icontains=tag_query)
+        empty = False
     if author_query:
         results = results.filter(author__username__icontains=author_query)
+        empty = False
+    if empty:
+        results = None
 
     context = {
         'results': results,
