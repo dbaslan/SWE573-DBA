@@ -207,7 +207,13 @@
 
     <br>
 
-    <h1>Search Results for "{{ query }}"</h1>
+    <h1>Search Results for posts including "{{ query }}"</h1>
+    {% if author_query %}
+        <h2>With author: "{{ author_query }}"</h2>
+    {% endif %}
+    {% if tag_query %}
+        <h2>with tags: "{{ tag_query }}"</h2>
+    {% endif %}
     {% if results %}
         <ul>
         {% for post in results %}
