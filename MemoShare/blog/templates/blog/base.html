@@ -51,6 +51,9 @@
                     </a>-->
                     <li><a href="/about" class="nav-link px-2 link-dark">About</a></li>
                     <li><a href="/search" class="nav-link px-2 link-dark">Advanced Search</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="/post_edit">New Post</a></li>
+                    {% endif %}
                     <!--<li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
                     <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>-->
                   </ul>
