@@ -75,3 +75,14 @@ def post_search(request):
 
 def about(request):
     return render(request, 'blog/about.html')
+
+def user_register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('profile')
+    else:
+        form = UserCreationForm()
+    return render(request, 'register.html', {'form': form})
