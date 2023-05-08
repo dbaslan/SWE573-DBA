@@ -9,8 +9,8 @@ urlpatterns = [
     path('post/<int:pk>/edit/', views.post_edit, name='post_edit'),
     path('search', views.post_search, name='post_search'),
     path('about', views.about, name='about'),
+    path('profile', views.user_profile, name='user_profile'),
     path('register', views.user_register, name='user_register'),
-    path("accounts/profile", views.ProfileView.as_view(), name="profile"),
-    path("accounts/login", auth_views.LoginView.as_view(template_name="accounts/login.html"), name="login"),
-    path("accounts/logout", auth_views.LogoutView.as_view(), name="logout")
+    path('login', views.user_login, name='user_login'),
+    path('logout', views.user_logout, name='post_list')
 ]
