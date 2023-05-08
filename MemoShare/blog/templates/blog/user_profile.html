@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript"></script>
-</head>
-<body>
+{% extends 'blog/base.html' %}
 
-</body>
-</html>
+{% block content %}
+
+    {% if user.is_authenticated %}
+    <h1>Hello, {{request.user.username}}!</h1>
+    {% endif %}
+
+    {% if ! user.is_authenticated %}
+    <h1>Please register, or log in if you are already registered.</h1>
+    {% endif %}
+
+{% endblock %}
