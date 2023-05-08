@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
-from .models import Post
+from .models import Post, Profile
 from .forms import PostForm
 
 # Create your views here.
