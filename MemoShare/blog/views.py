@@ -116,4 +116,4 @@ def user_profile(request):
     profile = Profile.objects.get(user=user)
     posts = Post.objects.filter(author=user).order_by('posted_date')
     context = {'user': user, 'profile': profile, 'posts': posts}
-    return render(request, 'profile.html', context)
+    return render(request, 'user_profile.html', context)
