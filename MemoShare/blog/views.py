@@ -107,6 +107,9 @@ def user_login(request):
         form = AuthenticationForm()
     return render(request, 'blog/login.html', {'form': form})
 
+def user_logout(request):
+    logout(request)
+
 def user_profile(request):
     user = request.user
     profile = Profile.objects.get(user=user)
