@@ -85,4 +85,4 @@ def user_register(request):
             return redirect('profile')
     else:
         form = UserCreationForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'blog/register.html', {'form': form})
