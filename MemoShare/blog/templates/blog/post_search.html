@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-    <h1>Advanced Search</h1>
+    <h1>Advanced Search</h1><br>
     <link rel="stylesheet" type="text/css" href="{% static "css/advanced_search.css" %}">
 
     <div style="display: flex;">
@@ -11,39 +11,21 @@
         <form action="/search" method="get">
             <label for="text">Title and Content:</label>
             <input type="text" name="query" value="{{ query }}" placeholder="Text"><br>
-            <button type="submit">Search</button>
-        </form>
-
-        <form action="/search" method="get">
+            <br>
             <label for="author">Author:</label>
             <input type="text" name="author" value="{{ author_query }}" placeholder="Author"><br>
-            <button type="submit">Search</button>
-        </form>
- 
-        <form action="/search" method="get">
+            <br>
             <label for="text4">Tags</label>
-            <input type="text" name="tag" value="{{ tag_query }}" placeholder="Tag">
+            <input type="text" name="tag" value="{{ tag_query }}" placeholder="Tag"><br>
             <br>
-            <button type="submit">Search</button>
-        </form>
-        <br>
-
-        <form action="/search" method="get">
             <label for="text5">Date of Memory</label>
-            <input type="text" name="date" value="{{ date_query }}" placeholder="Date">
+            <input type="text" name="date" value="{{ date_query }}" placeholder="Date"><br>
             <br>
-            <button type="submit">Search</button>
-        </form>
-        <br>
-
-        <form action="/search" method="get">
             <label for="text6">Location of Memory</label>
-            <input type="text" name="location" value="{{ location_query }}" placeholder="Location">
+            <input type="text" name="location" value="{{ location_query }}" placeholder="Location"><br>
             <br>
             <button type="submit">Search</button>
         </form>
-        <br>
-
     </div>
 
     <br>
