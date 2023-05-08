@@ -27,3 +27,12 @@ class Comment(models.Model):
     posted_date = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     post_connected = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(max_length=500, blank=True)
+    location = models.CharField(max_length=30, blank=True)
+    birthdate = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username
