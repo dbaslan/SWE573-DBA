@@ -44,8 +44,8 @@ def post_edit(request, pk):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 def post_search(request):
-    query = request.GET.get("q")
-    text_query = request.GET.get("text")
+    query = request.GET.get("q", default="")
+    text_query = request.GET.get("text", default="")
     author_query = request.GET.get("author", default="")
     tag_query = request.GET.get("tag", default="")
     #date_query = request.GET.get("date", default="")
