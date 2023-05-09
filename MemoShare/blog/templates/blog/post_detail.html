@@ -17,6 +17,11 @@
         <h2>{{ post.title }}</h2>
         <p>{{ post.text|linebreaksbr }}</p>
         <p>Posted by: {{ post.author|linebreaksbr }}</p>
-        <p>Date posted: {{ post.posted_date|linebreaksbr }}</p>
+        <p>Date posted:
+            <time class="date">
+                {{ post.posted_date }}
+            </time>
+        </p>
+        
     </article>
 {% endblock %}
