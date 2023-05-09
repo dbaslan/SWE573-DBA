@@ -4,16 +4,14 @@
 
     {% if user.is_authenticated %}
     <h1>Hello, {{request.user.username}}!</h1><br>
-    <h1>Your Posts</h1>
-        {% posts = Post.objects.all().filter(author__username={{request.user.username}}) %}
-        
+    <h2>Your Posts</h2><br>
         {% if posts %}
             {% for post in posts %}
                 <article class="post">
                     <time class="date">
                         {{ post.posted_date }}
                     </time>
-                    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                    <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
                     <p>{{ post.text|linebreaksbr }}</p>
                 </article>
             {% endfor %}
