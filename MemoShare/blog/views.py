@@ -7,6 +7,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import Post, Profile
 from .forms import PostForm
+import random
 
 # Create your views here.
 
