@@ -84,10 +84,6 @@ def post_search(request):
     }
     return render(request, 'blog/post_search.html', context)
 
-def post_random(request):
-    post = random.choice(Post.objects.all())
-    return render(request, 'blog/post_detail.html', {'post': post})
-
 def about(request):
     post = random.choice(Post.objects.all())
     return render(request, 'blog/about.html', {'post': post})
