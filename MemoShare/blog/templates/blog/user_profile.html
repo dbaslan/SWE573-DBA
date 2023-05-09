@@ -3,7 +3,23 @@
 {% block content %}
 
     {% if user.is_authenticated %}
-    <h1>Hello, {{request.user.username}}!</h1>
+    <h1>Hello, {{request.user.username}}!</h1><br>
+    <h1>Your Posts</h1>
+        {% posts = Post.objects.all().filter(author__username={{request.user.username}}) %}
+        
+        {% if posts %}
+            {% for post in posts %}
+                <article class="post">
+                    <time class="date">
+                        {{ post.posted_date }}
+                    </time>
+                    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                </article>
+            {% endfor %}
+        {% else %}
+        <p>You have not made any posts yet. <a href='post_new'>Start now!</a></p>
+        {% endif %}
     {% endif %}
 
     {% if not user.is_authenticated %}
