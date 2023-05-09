@@ -6,7 +6,7 @@
     <h1>Hello, {{request.user.username}}!</h1>
     {% endif %}
 
-    {% if ! user.is_authenticated %}
+    {% if not user.is_authenticated %}
     <h1>Please register, or log in if you are already registered.</h1>
     {% endif %}
 
