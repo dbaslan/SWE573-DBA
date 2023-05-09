@@ -122,6 +122,7 @@ def user_logout(request):
     messages.info(request, "You have logged out successfully.") 
     return redirect('about')
 
+@login_required
 def user_profile(request):
     user = request.user
     profile = Profile.objects.get(user=user)
