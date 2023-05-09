@@ -11,7 +11,6 @@
     <h1>Do I have to pay?</h1>
     <p>Nope! MemoShare is completely free of charge!</p>
     <h1>Can I read a few posts?</h1>
-    <p>Sure! Go ahead and read a random post here!</p>
-    <p><a href="{% url 'post_random' pk=post.pk %}">here!</a></p>
+    <p>Sure! Go ahead and read a random post <a href="{% url 'post_detail' pk=post.pk %}">here!</a></p>
 
 {% endblock %}
