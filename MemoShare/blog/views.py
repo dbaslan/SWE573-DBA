@@ -30,7 +30,7 @@ def post_new(request):
     else:
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
-
+"""
 def post_new(request):
     if request.method == 'POST':
         title = request.POST['title']
@@ -38,7 +38,7 @@ def post_new(request):
         post = Post.objects.create(title=title, content=content, author=request.user)
         return redirect('view_post', pk=post.pk)
     return render(request, 'create_post.html')
-
+"""
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
