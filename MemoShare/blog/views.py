@@ -15,7 +15,20 @@ def post_list(request):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+    is_liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        is_liked = True
+
+    if request.method == 'POST':
+        if 'like-btn' in request.POST:
+            if not is_liked:
+                post.likes.add(request.user)
+                is_liked = True
+            else:
+                post.likes.remove(request.user)
+                is_liked = False
+
+    return render(request, 'blog/post_detail.html', {'post': post}, {'is_liked': is_liked})
 
 def post_new(request):
     if request.method == "POST":
