@@ -107,7 +107,7 @@ def user_login(request):
 			if user is not None:
 				login(request, user)
 				messages.info(request, f"You have logged in as {username}.")
-				return redirect("profile")
+				return redirect("user_profile")
 			else:
 				messages.error(request,"Invalid username or password.")
 		else:
