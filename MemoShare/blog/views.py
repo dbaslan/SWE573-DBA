@@ -9,8 +9,6 @@ from .models import Post, Profile
 from .forms import PostForm
 import random
 
-# Create your views here.
-
 def post_list(request):
     posts = Post.objects.filter(posted_date__lte=timezone.now()).order_by('posted_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
