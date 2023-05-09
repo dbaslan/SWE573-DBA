@@ -89,7 +89,8 @@ def post_random(request):
     return render(request, 'blog/post_detail.html', {'post': post})
 
 def about(request):
-    return render(request, 'blog/about.html')
+    post = random.choice(Post.objects.all())
+    return render(request, 'blog/about.html', {'post': post})
 
 def user_register(request):
     if request.method == 'POST':
