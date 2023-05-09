@@ -26,6 +26,20 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+class Like(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    post = models.ForeignKey('Post', on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'post')
+
+    def __str__(self):
+        return '{} likes {}'.format(self.user.username, self.post.title)
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[str(self.post.id)])
+
 class Comment(models.Model):
     content = models.TextField(max_length=3000)
     posted_date = models.DateTimeField(default=timezone.now)
