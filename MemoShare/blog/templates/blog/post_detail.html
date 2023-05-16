@@ -40,6 +40,12 @@
                 {{ post.memory_date| date:"M d, Y" }}
             </time>
         </p>
+
+        <p>Location:
+          <time class="date">
+              {{ post.location }}
+          </time>
+        </p>
         
         <p>Likes: {{ post.total_likes }}</p>
         {% if user.is_authenticated %}
