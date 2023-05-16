@@ -61,6 +61,7 @@
               <form method="POST" action="{% url 'post_detail' post.pk %}">
                 {% csrf_token %}
                 <textarea name="comment_text" placeholder="Write your comment here"></textarea>
+                <br>
                 <button type="submit" class="btn btn-primary">Post Comment</button>
               </form>
             </div>
