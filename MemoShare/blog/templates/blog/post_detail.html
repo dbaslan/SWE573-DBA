@@ -22,6 +22,7 @@
                 {{ post.posted_date }}
             </time>
         </p>
+        
         <p>Likes: {{ post.total_likes }}</p>
         {% if user.is_authenticated %}
           {% if is_liked %}
@@ -36,6 +37,29 @@
             </form>
           {% endif %}
         {% endif %}
+
+        <div class="comments">
+            <h3>Comments</h3>
+            {% for comment in comments %}
+              <div class="comment">
+                <p>{{ comment.author }} says:</p>
+                <p>{{ comment.text }}</p>
+              </div>
+            {% empty %}
+              <p>No comments yet.</p>
+            {% endfor %}
+          </div>
+          <!-- Comment form -->
+          {% if user.is_authenticated %}
+            <div class="comment-form">
+              <h3>Add a comment</h3>
+              <form method="POST" action="{% url 'post_detail' post.pk %}">
+                {% csrf_token %}
+                <textarea name="comment_text" placeholder="Write your comment here"></textarea>
+                <button type="submit" class="btn btn-primary">Post Comment</button>
+              </form>
+            </div>
+          {% endif %}
         
     </article>
 {% endblock %}
