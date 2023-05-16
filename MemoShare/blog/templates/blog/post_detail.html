@@ -25,12 +25,12 @@
         <p>Likes: {{ post.likes.count }}</p>
         {% if user.is_authenticated %}
           {% if user in post.likes.all %}
-            <form action="{% url 'post_unlike' post.id %}" method="POST">
+            <form action="{% url 'unlike_post' post.id %}" method="POST">
               {% csrf_token %}
               <button type="submit" class="btn btn-danger">Unlike</button>
             </form>
           {% else %}
-            <form action="{% url 'post_like' post.id %}" method="POST">
+            <form action="{% url 'like_post' post.id %}" method="POST">
               {% csrf_token %}
               <button type="submit" class="btn btn-primary">Like</button>
             </form>
