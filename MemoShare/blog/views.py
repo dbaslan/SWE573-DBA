@@ -5,11 +5,11 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
 from .models import Post, Profile
 from .forms import PostForm
 import random
+
+# Create your views here.
 
 def post_list(request):
     posts = Post.objects.filter(posted_date__lte=timezone.now()).order_by('posted_date')
@@ -17,20 +17,7 @@ def post_list(request):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    is_liked = False
-    if post.likes.filter(id=request.user.id).exists():
-        is_liked = True
-
-    if request.method == 'POST':
-        if 'like-btn' in request.POST:
-            if not is_liked:
-                post.likes.add(request.user)
-                is_liked = True
-            else:
-                post.likes.remove(request.user)
-                is_liked = False
-
-    return render(request, 'blog/post_detail.html', {'post': post}, {'is_liked': is_liked})
+    return render(request, 'blog/post_detail.html', {'post': post})
 
 def post_new(request):
     if request.method == "POST":
@@ -66,18 +53,6 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
-
-@login_required
-def post_like(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    post.likes.add(request.user)
-    return HttpResponseRedirect(reverse('post_detail', args=[str(pk)]))
-
-@login_required
-def post_unlike(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    post.likes.remove(request.user)
-    return HttpResponseRedirect(reverse('post_detail', args=[str(pk)]))
 
 def post_search(request):
     query = request.GET.get("query", "")
@@ -147,7 +122,6 @@ def user_logout(request):
     messages.info(request, "You have logged out successfully.") 
     return redirect('about')
 
-@login_required
 def user_profile(request):
     user = request.user
     profile = Profile.objects.get(user=user)
