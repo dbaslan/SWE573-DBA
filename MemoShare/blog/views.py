@@ -86,8 +86,9 @@ def post_search(request):
     query = request.GET.get("query", "")
     author_query = request.GET.get("author", "")
     tag_query = request.GET.get("tag", "")
-    #date_query = request.GET.get("date", default="")
-    #location_query = request.GET.get("location", default="")
+    date_query = request.GET.get("date", "")
+    timestart_query = request.GET.get("start", "")
+    timeend_query = request.GET.get("end", timezone.now())
 
     empty = True
     results = Post.objects.all()
@@ -101,6 +102,15 @@ def post_search(request):
     if author_query:
         results = results.filter(author__username__icontains=author_query)
         empty = False
+    if date_query:
+        results = results.filter(memory_date__gte=date_query).filter(memory_date__lte=date_query)
+        empty = False
+    if timestart_query:
+        results = results.filter(memory_date__gte=timestart_query)
+        empty = False
+    if timeend_query:
+        results = results.filter(memory_date__lte=timeend_query)
+        empty = False
     if empty:
         results = None
 
@@ -109,6 +119,9 @@ def post_search(request):
         'query': query,
         'tag_query': tag_query,
         'author_query': author_query,
+        'date_query': date_query,
+        'timestart_query': timestart_query,
+        'timeend_query': timeend_query
     }
     return render(request, 'blog/post_search.html', context)
 
