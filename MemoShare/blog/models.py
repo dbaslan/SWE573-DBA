@@ -5,6 +5,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from taggit.managers import TaggableManager
 
 
 class Tag(models.Model):
@@ -15,8 +16,8 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     text = models.TextField(max_length=30000)
     posted_date = models.DateTimeField(default=timezone.now)
-    #memory_date = models.DateTimeField(blank=True, null=True)
-    #tags = models.ManyToManyField(Tag)
+    memory_date = models.DateTimeField(blank=True, null=True)
+    tags = models.ManyToManyField(Tag, blank=True, null=True)
     likes = models.ManyToManyField(get_user_model(), related_name='liked_posts', through='Like')
 
 
