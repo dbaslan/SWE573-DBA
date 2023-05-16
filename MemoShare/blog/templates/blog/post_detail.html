@@ -20,34 +20,34 @@
         <p>{{ post.text|linebreaksbr }}</p>
 
         {% if post.tags.all %}
-            <p> Tags: 
+            <p><b>Tags:</b> 
                 {% for tag in post.tags.all %}
                     #{{ tag }}
                 {% endfor %}
             </p>
         {% endif %}
 
-        <p>Posted by: {{ post.author|linebreaksbr }}</p>
+        <p><b>Posted by:</b> {{ post.author|linebreaksbr }}</p>
         
-        <p>Date posted:
+        <p><b>Date posted:</b>
             <time class="date">
                 {{ post.posted_date }}
             </time>
         </p>
 
-        <p>Date of Memory:
+        <p><b>Date of Memory:</b>
             <time class="date">
                 {{ post.memory_date| date:"M d, Y" }}
             </time>
         </p>
 
-        <p>Location:
+        <p><b>Location:</b>
           <time class="date">
               {{ post.location }}
           </time>
         </p>
         
-        <p>Likes: {{ post.total_likes }}</p>
+        <p><b>Likes:</b> {{ post.total_likes }}</p>
         {% if user.is_authenticated %}
           {% if is_liked %}
             <form action="{% url 'post_unlike' post.pk %}" method="POST">
@@ -64,7 +64,7 @@
         <br>
 
         <div class="comments">
-            <h3>Comments</h3>
+            <h3><b>Comments</b></h3>
             {% for comment in comments %}
               <div class="comment">
                 <p>{{ comment.author }} says:</p>
