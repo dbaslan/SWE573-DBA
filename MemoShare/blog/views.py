@@ -89,6 +89,7 @@ def post_search(request):
     date_query = request.GET.get("date", "")
     timestart_query = request.GET.get("start", "")
     timeend_query = request.GET.get("end", timezone.now())
+    location_query = request.GET.get("location", "")
 
     empty = True
     results = Post.objects.all()
@@ -101,6 +102,9 @@ def post_search(request):
         empty = False
     if author_query:
         results = results.filter(author__username__icontains=author_query)
+        empty = False
+    if location_query:
+        results = results.filter(location__icontains=location_query)
         empty = False
     if date_query:
         results = results.filter(memory_date__gte=date_query).filter(memory_date__lte=date_query)
