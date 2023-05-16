@@ -16,7 +16,7 @@
                 </article>
             {% endfor %}
         {% else %}
-        <p>You have not made any posts yet. <a href='post_new'>Start now!</a></p>
+        <p>You have not made any posts yet. <a href="{% url 'post_new' %}">Start now!</a></p>
         {% endif %}
     {% endif %}
 
