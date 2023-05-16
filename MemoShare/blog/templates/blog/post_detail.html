@@ -44,6 +44,9 @@
               <div class="comment">
                 <p>{{ comment.author }} says:</p>
                 <p>{{ comment.text }}</p>
+                <time class="date">
+                    {{ comment.posted_date }}
+                </time>
               </div>
             {% empty %}
               <p>No comments yet.</p>
