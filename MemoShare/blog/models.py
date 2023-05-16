@@ -16,7 +16,7 @@ class Post(models.Model):
     text = models.TextField(max_length=30000)
     posted_date = models.DateTimeField(default=timezone.now)
     #memory_date = models.DateTimeField(blank=True, null=True)
-    tags = models.ManyToManyField(Tag)
+    #tags = models.ManyToManyField(Tag)
     likes = models.ManyToManyField(get_user_model(), related_name='liked_posts', through='Like')
 
 
