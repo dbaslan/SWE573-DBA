@@ -16,6 +16,13 @@
         {% endif %}
         <h2>{{ post.title }}</h2>
         <p>{{ post.text|linebreaksbr }}</p>
+        {% if post.tags.all %}
+        <p> Tags: 
+            {% for tag in post.tags.all %}
+                #{{ tag }}
+            {% endfor %}
+        </p>
+        {% endif %}    
         <p>Posted by: {{ post.author|linebreaksbr }}</p>
         <p>Date posted:
             <time class="date">
