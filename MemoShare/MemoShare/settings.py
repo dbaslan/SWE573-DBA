@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     "users",
     'django.contrib.sites',
     "MemoShare",
-    "blog"
+    "blog",
+    "taggit"
 ]
 
 SITE_ID = 1
