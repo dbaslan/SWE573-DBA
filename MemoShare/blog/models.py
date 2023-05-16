@@ -8,9 +8,6 @@ from django.urls import reverse
 from taggit.managers import TaggableManager
 
 
-class Tag(models.Model):
-    name = models.CharField(max_length=32)
-
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
