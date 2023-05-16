@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from taggit.managers import TaggableManager
+from taggit.models import Tag
 
 
 class Post(models.Model):

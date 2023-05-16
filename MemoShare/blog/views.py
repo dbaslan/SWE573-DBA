@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, Profile, Like, Comment
 from .forms import PostForm
 import random
+from taggit.models import Tag
 
 def post_list(request):
     posts = Post.objects.filter(posted_date__lte=timezone.now()).order_by('posted_date')

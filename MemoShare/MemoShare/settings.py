@@ -40,10 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "users",
     'django.contrib.sites',
+    'taggit'
     "MemoShare",
     "blog",
-    "taggit",
-    "django-taggit"
 ]
 
 SITE_ID = 1
