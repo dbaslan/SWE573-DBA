@@ -5,11 +5,9 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from .models import Post, Profile, Like
+from .models import Post, Profile, Like, Comment
 from .forms import PostForm
 import random
-
-# Create your views here.
 
 def post_list(request):
     posts = Post.objects.filter(posted_date__lte=timezone.now()).order_by('posted_date')
@@ -18,8 +16,11 @@ def post_list(request):
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     is_liked = post.likes.filter(id=request.user.id).exists()
+    comments = post.comments.all()
 
     if request.method == 'POST':
+        comment_text = request.POST.get('comment_text')
+        Comment.objects.create(post=post, author=request.user, text=comment_text)
         if 'like-btn' in request.POST:
             if not is_liked:
                 Like.objects.create(user=request.user, post=post)
@@ -29,7 +30,7 @@ def post_detail(request, pk):
 
         return redirect('post_detail', pk=post.pk)
 
-    return render(request, 'blog/post_detail.html', {'post': post, 'is_liked': is_liked})
+    return render(request, 'blog/post_detail.html', {'post': post, 'is_liked': is_liked, 'comments': comments})
 
 def post_new(request):
     if request.method == "POST":
