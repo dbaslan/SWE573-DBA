@@ -9,7 +9,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ("title", "text", "tags", "memory_date")
+        fields = ("title", "text", "tags", "location", "memory_date")
         widgets = {
             'memory_date': DateInput(),
         }
