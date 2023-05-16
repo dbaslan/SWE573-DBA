@@ -5,8 +5,9 @@
 {% block content %}
     <h1>Advanced Search</h1><br>
     <link rel="stylesheet" type="text/css" href="{% static "css/advanced_search.css" %}">
-
+    
     <div style="display: flex;">
+      <div style="display: flex;">
 
         <form action="/search" method="get">
             <label for="text">Title and Content</label>
@@ -32,36 +33,39 @@
             <button type="submit">Search</button>
 
         </form>
+      </div>
+
+      <br>
+      <br>
+
+      <div>
+        <h1>Search Results for posts including "{{ query }}"</h1>
+        {% if author_query %}
+            <h2>With author: "{{ author_query }}"</h2>
+        {% endif %}
+        {% if tag_query %}
+            <h2>With tags: #{{ tag_query }}</h2>
+        {% endif %}
+        {% if date_query %}
+            <h2>With date: {{ date_query }}</h2>
+        {% endif %}
+        {% if timestart_query %}
+            <h2>After: {{ timestart_query }}</h2>
+        {% endif %}
+        {% if timeend_query %}
+            <h2>Before: {{ timeend_query }}</h2>
+        {% endif %}
+        {% if results %}
+            <ul>
+            {% for post in results %}
+                <li><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+      </div>
     </div>
-
-    <br>
-    <br>
-
-    <h1>Search Results for posts including "{{ query }}"</h1>
-    {% if author_query %}
-        <h2>With author: "{{ author_query }}"</h2>
-    {% endif %}
-    {% if tag_query %}
-        <h2>With tags: #{{ tag_query }}</h2>
-    {% endif %}
-    {% if date_query %}
-        <h2>With date: {{ date_query }}</h2>
-    {% endif %}
-    {% if timestart_query %}
-        <h2>After: {{ timestart_query }}</h2>
-    {% endif %}
-    {% if timeend_query %}
-        <h2>Before: {{ timeend_query }}</h2>
-    {% endif %}
-    {% if results %}
-        <ul>
-        {% for post in results %}
-            <li><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No results found.</p>
-    {% endif %}
 
     <br>
     <br>
