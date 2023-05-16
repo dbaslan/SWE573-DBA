@@ -15,22 +15,24 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     text = models.TextField(max_length=30000)
     posted_date = models.DateTimeField(default=timezone.now)
-    likes = models.IntegerField(default=0)
     #memory_date = models.DateTimeField(blank=True, null=True)
     tags = models.ManyToManyField(Tag)
-    likes = models.ManyToManyField(get_user_model(), related_name='post_likes')
+    likes = models.ManyToManyField(get_user_model(), related_name='liked_posts', through='Like')
 
 
     def publish(self):
         self.published_date = timezone.now()
         self.save()
 
+    def total_likes(self):
+        return self.likes.count()
+
     def __str__(self):
         return self.title
 
 class Like(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    post = models.ForeignKey('Post', on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:

@@ -22,6 +22,20 @@
                 {{ post.posted_date }}
             </time>
         </p>
+        <p>Likes: {{ post.total_likes }}</p>
+        {% if user.is_authenticated %}
+          {% if is_liked %}
+            <form action="{% url 'post_unlike' post.pk %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Unlike</button>
+            </form>
+          {% else %}
+            <form action="{% url 'post_like' post.pk %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary">Like</button>
+            </form>
+          {% endif %}
+        {% endif %}
         
     </article>
 {% endblock %}

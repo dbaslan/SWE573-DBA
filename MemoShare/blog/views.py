@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from .models import Post, Profile
+from .models import Post, Profile, Like
 from .forms import PostForm
 import random
 
@@ -17,7 +17,19 @@ def post_list(request):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+    is_liked = post.likes.filter(id=request.user.id).exists()
+
+    if request.method == 'POST':
+        if 'like-btn' in request.POST:
+            if not is_liked:
+                Like.objects.create(user=request.user, post=post)
+        elif 'unlike-btn' in request.POST:
+            if is_liked:
+                Like.objects.filter(user=request.user, post=post).delete()
+
+        return redirect('post_detail', pk=post.pk)
+
+    return render(request, 'blog/post_detail.html', {'post': post, 'is_liked': is_liked})
 
 def post_new(request):
     if request.method == "POST":
@@ -53,6 +65,18 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+
+@login_required
+def post_like(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    like, created = Like.objects.get_or_create(user=request.user, post=post)
+    return redirect('post_detail', pk=post.pk)
+
+@login_required
+def post_unlike(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    Like.objects.filter(user=request.user, post=post).delete()
+    return redirect('post_detail', pk=post.pk)
 
 def post_search(request):
     query = request.GET.get("query", "")
