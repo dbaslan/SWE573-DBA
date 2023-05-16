@@ -48,7 +48,7 @@ class Comment(models.Model):
     content = models.TextField(max_length=3000)
     posted_date = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    post_connected = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post_connected = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
