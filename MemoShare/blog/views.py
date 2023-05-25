@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import Post, Profile, Like, Comment
-from .forms import PostForm
+from .forms import PostForm, ProfileForm
 import random
 from taggit.models import Tag
 
@@ -173,3 +173,17 @@ def user_profile(request):
     posts = Post.objects.filter(author=user).order_by('posted_date')
     context = {'user': user, 'profile': profile, 'posts': posts}
     return render(request, 'blog/user_profile.html', context)
+
+def user_profile_edit(request):
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    if request.method == "POST":
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.save()
+            form.save_m2m()
+            return redirect('profile')
+    else:
+        form = ProfileForm()
+    return render(request, 'blog/user_profile_edit.html', {'form': form})
