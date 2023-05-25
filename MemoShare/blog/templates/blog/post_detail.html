@@ -27,7 +27,7 @@
             </p>
         {% endif %}
 
-        <p><b>Posted by:</b> {{ post.author|linebreaksbr }}</p>
+        <p><b>Posted by: </b><a href="{% url 'user_page' usernamex=post.author %}"> {{ post.author|linebreaksbr }}</a></p>
         
         <p><b>Date posted:</b>
             <time class="date">
@@ -41,7 +41,7 @@
             </time>
         </p>
 
-        <p><b>Location:</b>
+        <p><b>Location of Memory:</b>
           <time class="date">
               {{ post.location }}
           </time>
@@ -67,7 +67,7 @@
             <h3><b>Comments</b></h3>
             {% for comment in comments %}
               <div class="comment">
-                <p>{{ comment.author }} says:</p>
+                <p><a href="{% url 'user_page' usernamex=comment.author %}">{{ comment.author }}</a> says:</p>
                 <p>{{ comment.text }}</p>
                 <time class="date">
                     {{ comment.posted_date }}
