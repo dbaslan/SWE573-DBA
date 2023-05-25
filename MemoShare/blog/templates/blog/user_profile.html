@@ -33,6 +33,16 @@
                     </time>
                     <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
                     <p>{{ post.text|linebreaksbr }}</p>
+                    <aside class="actions">
+                        {% if user.is_authenticated and post.author.id == user.id %}
+                            <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">
+                                {% include './icons/pencil-fill.svg' %} Edit
+                            </a>
+                            <a class="btn btn-outline-danger" href="{% url 'post_delete' pk=post.pk %}">
+                                {% include './icons/trash.svg' %} Delete
+                            </a>
+                        {% endif %}
+                    </aside>
                 </article>
             {% endfor %}
         {% else %}
