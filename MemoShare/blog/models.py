@@ -15,8 +15,8 @@ class Post(models.Model):
     text = models.TextField(max_length=30000)
     posted_date = models.DateTimeField(default=timezone.now)
     memory_date = models.DateTimeField(blank=True, null=True)
-    location = map_fields.AddressField(max_length=200)
-    geolocation = map_fields.GeoLocationField(max_length=100)
+    location = map_fields.AddressField(max_length=200, blank=True, null=True)
+    geolocation = map_fields.GeoLocationField(max_length=100, blank=True, null=True)
     tags = TaggableManager()
     likes = models.ManyToManyField(get_user_model(), related_name='liked_posts', through='Like')
 
