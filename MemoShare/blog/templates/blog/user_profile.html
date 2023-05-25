@@ -4,17 +4,17 @@
 
     {% if user.is_authenticated %}
     <h1>Hello, {{request.user.username}}!</h1><br>        
-    <aside class="actions">
-        <a class="btn btn-secondary" href="{% url 'user_profile_edit' %}">
-            {% include './icons/pencil-fill.svg' %}
-        </a>
-    </aside>
     <h2>Name: {{profile.name}}</h2><br>
     <h2>Date Joined: {{request.user.date_joined}}</h2><br>
     <h2>E-mail Address: {{request.user.email}}</h2><br>
     <h2>Birthday: {{profile.birthdate}}</h2><br>
     <h2>Location: {{profile.location}}</h2><br>
     <h2>Bio: {{profile.bio}}</h2><br>
+    <aside class="actions">
+        <a class="btn btn-secondary" href="{% url 'user_profile_edit' %}">
+            {% include './icons/pencil-fill.svg' %} <p> Edit Profile </p>
+        </a>
+    </aside>
     <h2>Change Password</h2><br>
     <h2>Change Email</h2><br>
     <h2>Your Posts</h2><br>
