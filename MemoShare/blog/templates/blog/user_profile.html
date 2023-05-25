@@ -23,8 +23,7 @@
             {% include './icons/pencil-fill.svg' %} <p> Change Password </p>
         </a>
     </aside>
-    <h2>Change Password</h2><br>
-    <h2>Change Email</h2><br>
+    <br><br>
     <h2>Your Posts</h2><br>
         {% if posts %}
             {% for post in posts %}
@@ -45,6 +44,7 @@
         {% csrf_token %}
         <button type="submit" class="btn btn-primary">Make a new post</button>
     </form>
+    <br><br>
 
     {% if not user.is_authenticated %}
     <h1>Please register, or log in if you are already registered.</h1>
