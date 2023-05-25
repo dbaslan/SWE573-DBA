@@ -35,6 +35,7 @@ def post_detail(request, pk):
 
     return render(request, 'blog/post_detail.html', {'post': post, 'is_liked': is_liked, 'comments': comments})
 
+@login_required
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -176,6 +177,7 @@ def user_profile(request):
     context = {'user': user, 'profile': profile, 'posts': posts}
     return render(request, 'blog/user_profile.html', context)
 
+@login_required
 def user_profile_edit(request):
     user = request.user
     profile = Profile.objects.get(user=user)
@@ -190,6 +192,7 @@ def user_profile_edit(request):
         form = ProfileForm(instance=profile)
     return render(request, 'blog/user_profile_edit.html', {'form': form})
 
+@login_required
 def user_mail_edit(request):
     user = request.user
     if request.method == "POST":
