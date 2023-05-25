@@ -23,9 +23,5 @@
         <p>{{user.username}} has not made any posts yet.</p>
         {% endif %}
     <br>
-    <form method="POST" action="{% url 'post_new' %}">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-primary">Make a new post</button>
-    </form>
 
 {% endblock %}
