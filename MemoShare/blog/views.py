@@ -179,6 +179,13 @@ def user_logout(request):
     messages.info(request, "You have logged out successfully.") 
     return redirect('about')
 
+def user_delete(request):
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    profile.delete()
+    user.delete()
+    return redirect('post_list')
+
 def user_profile(request):
     user = request.user
     profile = Profile.objects.get(user=user)
