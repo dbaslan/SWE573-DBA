@@ -4,6 +4,13 @@
 
     {% if user.is_authenticated %}
     <h1>Hello, {{request.user.username}}!</h1><br>
+    <h2>First Name: {{request.user.first_name}}</h2><br>
+    <h2>Last Name: {{request.user.last_name}}</h2><br>
+    <h2>E-mail Address: {{request.user.email}}</h2><br>
+    <h2>Password: {{request.user.password}}</h2><br>
+    <h2>Birthday: {{request.user.birthdate}}</h2><br>
+    <h2>Location: {{request.user.location}}</h2><br>
+    <h2>Bio: {{request.user.bio}}</h2><br>
     <h2>Your Posts</h2><br>
         {% if posts %}
             {% for post in posts %}
