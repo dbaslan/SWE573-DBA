@@ -7,7 +7,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Post, Profile, Like, Comment
-from .forms import PostForm, ProfileForm
+from .forms import PostForm, ProfileForm, MailChangeForm
 import random
 from taggit.models import Tag
 
@@ -188,6 +188,19 @@ def user_profile_edit(request):
     else:
         form = ProfileForm(instance=profile)
     return render(request, 'blog/user_profile_edit.html', {'form': form})
+
+def user_mail_edit(request):
+    user = request.user
+    if request.method == "POST":
+        form = MailChangeForm(request.POST, instance=user)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+            form.save_m2m()
+            return redirect('user_profile')
+    else:
+        form = ProfileForm(instance=user)
+    return render(request, 'blog/user_mail_edit.html', {'form': form})
 
 def user_page(request, usernamex):
     userx = get_object_or_404(User, username=usernamex)
