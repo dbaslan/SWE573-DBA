@@ -22,6 +22,9 @@
         <a class="btn btn-secondary" href="profile/password">
             {% include './icons/pencil-fill.svg' %} <p> Change Password </p>
         </a>
+        <a class="btn btn-outline-danger" href="{% url 'user_delete' %}">
+            {% include './icons/trash.svg' %} Delete User
+        </a>
     </aside>
     <br><br>
     <h2>Your Posts</h2><br>
