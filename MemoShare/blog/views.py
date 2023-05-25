@@ -49,6 +49,13 @@ def post_new(request):
     else:
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
+
+@login_required
+def post_delete(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.delete()
+    return redirect('post_list')
+     
 """
 def post_new(request):
     if request.method == 'POST':
@@ -58,6 +65,8 @@ def post_new(request):
         return redirect('view_post', pk=post.pk)
     return render(request, 'create_post.html')
 """
+
+@login_required
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
