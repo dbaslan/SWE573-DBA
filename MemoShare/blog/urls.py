@@ -17,6 +17,7 @@ urlpatterns = [
     path('profile/edit', views.user_profile_edit, name='user_profile_edit'),
     path('profile/mail', views.user_mail_edit, name='user_mail_edit'),
     path('profile/password', auth_views.PasswordChangeView.as_view(success_url=reverse_lazy('user_profile'), template_name="blog/user_pw_edit.html")),
+    path('profile/delete', views.user_delete, name='profile_delete'),
     path('register', views.user_register, name='user_register'),
     path('login', views.user_login, name='user_login'),
     path('logout', views.user_logout, name='user_logout'),
