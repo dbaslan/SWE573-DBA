@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+    <h1>{{user.username}}'s User Page</h1><br>        
+    <h2>Name: {{profile.name}}</h2><br>
+    <h2>Date Joined: {{user.date_joined}}</h2><br>
+    <h2>Birthday: {{profile.birthdate}}</h2><br>
+    <h2>Location: {{profile.location}}</h2><br>
+    <h2>Bio: {{profile.bio}}</h2><br>
+    <h2>{{profile.}}'s Posts:</h2><br>
+        {% if posts %}
+            {% for post in posts %}
+                <article class="post">
+                    <time class="date">
+                        {{ post.posted_date }}
+                    </time>
+                    <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                </article>
+            {% endfor %}
+        {% else %}
+        <p>{{user.username}} has not made any posts yet.</p>
+        {% endif %}
+    <br>
+    <form method="POST" action="{% url 'post_new' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Make a new post</button>
+    </form>
+
+{% endblock %}
