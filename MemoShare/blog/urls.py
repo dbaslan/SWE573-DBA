@@ -11,6 +11,7 @@ urlpatterns = [
     path('search', views.post_search, name='post_search'),
     path('about', views.about, name='about'),
     path('profile', views.user_profile, name='user_profile'),
+    path('profile/edit', views.user_profile_edit, name='user_profile_edit'),
     path('register', views.user_register, name='user_register'),
     path('login', views.user_login, name='user_login'),
     path('logout', views.user_logout, name='user_logout'),
