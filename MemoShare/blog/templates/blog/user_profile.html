@@ -3,7 +3,12 @@
 {% block content %}
 
     {% if user.is_authenticated %}
-    <h1>Hello, {{request.user.username}}!</h1><br>
+    <h1>Hello, {{request.user.username}}!</h1><br>        
+    <aside class="actions">
+        <a class="btn btn-secondary" href="{% url 'user_profile_edit' %}">
+            {% include './icons/pencil-fill.svg' %}
+        </a>
+    </aside>
     <h2>Name: {{request.user.name}}</h2><br>
     <h2>Date Joined: {{request.user.date_joined}}</h2><br>
     <h2>E-mail Address: {{request.user.email}}</h2><br>
