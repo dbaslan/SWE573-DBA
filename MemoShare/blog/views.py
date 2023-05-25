@@ -178,12 +178,12 @@ def user_profile_edit(request):
     user = request.user
     profile = Profile.objects.get(user=user)
     if request.method == "POST":
-        form = ProfileForm(request.POST)
+        form = ProfileForm(request.POST, instance=profile)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.save()
             form.save_m2m()
-            return redirect('profile')
+            return redirect('user_profile')
     else:
-        form = ProfileForm()
+        form = ProfileForm(instance=profile)
     return render(request, 'blog/user_profile_edit.html', {'form': form})
