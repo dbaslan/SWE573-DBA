@@ -1,5 +1,7 @@
 {% extends 'blog/base.html' %}
 
+{% block title %} Update Email Address {% endblock title %}
+
 {% block content %}
     <h2>Update Email Address</h2>
     <form method="POST" class="post-form">{% csrf_token %}
