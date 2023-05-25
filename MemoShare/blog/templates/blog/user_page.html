@@ -2,15 +2,15 @@
 
 {% block content %}
 
-    <h1>{{user.username}}'s User Page</h1><br>        
-    <h2>Name: {{profile.name}}</h2><br>
-    <h2>Date Joined: {{user.date_joined}}</h2><br>
-    <h2>Birthday: {{profile.birthdate}}</h2><br>
-    <h2>Location: {{profile.location}}</h2><br>
-    <h2>Bio: {{profile.bio}}</h2><br>
-    <h2>{{user.username}}'s Posts:</h2><br>
-        {% if posts %}
-            {% for post in posts %}
+    <h1>{{userx.username}}'s User Page</h1><br>        
+    <h2>Name: {{profilex.name}}</h2><br>
+    <h2>Date Joined: {{userx.date_joined}}</h2><br>
+    <h2>Birthday: {{profilex.birthdate}}</h2><br>
+    <h2>Location: {{profilex.location}}</h2><br>
+    <h2>Bio: {{profilex.bio}}</h2><br>
+    <h2>{{userx.username}}'s Posts:</h2><br>
+        {% if postsx %}
+            {% for post in postsx %}
                 <article class="post">
                     <time class="date">
                         {{ post.posted_date }}
@@ -20,7 +20,7 @@
                 </article>
             {% endfor %}
         {% else %}
-        <p>{{user.username}} has not made any posts yet.</p>
+        <p>{{userx.username}} has not made any posts yet.</p>
         {% endif %}
     <br>
 
