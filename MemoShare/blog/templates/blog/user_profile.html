@@ -41,7 +41,7 @@
                             <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">
                                 {% include './icons/pencil-fill.svg' %} Edit
                             </a>
-                            <a class="btn btn-outline-danger" href="{% url 'post_delete' pk=post.pk %}">
+                            <a class="btn btn-outline-danger" href="{% url 'post_delete' pk=post.pk %}" onclick="return confirm('Are you sure? This is permanent');">
                                 {% include './icons/trash.svg' %} Delete
                             </a>
                         {% endif %}
