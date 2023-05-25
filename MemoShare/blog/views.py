@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Post, Profile, Like, Comment
