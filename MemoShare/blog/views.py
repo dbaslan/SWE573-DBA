@@ -199,7 +199,7 @@ def user_mail_edit(request):
             form.save_m2m()
             return redirect('user_profile')
     else:
-        form = ProfileForm(instance=user)
+        form = MailChangeForm(instance=user)
     return render(request, 'blog/user_mail_edit.html', {'form': form})
 
 def user_page(request, usernamex):
