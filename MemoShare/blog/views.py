@@ -190,8 +190,8 @@ def user_profile_edit(request):
     return render(request, 'blog/user_profile_edit.html', {'form': form})
 
 def user_page(request, usernamex):
-    user = get_object_or_404(User, username=usernamex)
-    profile = Profile.objects.get(user=user)
-    posts = Post.objects.filter(author=user).order_by('posted_date')
-    context = {'profile': profile, 'posts': posts}
+    userx = get_object_or_404(User, username=usernamex)
+    profilex = Profile.objects.get(user=userx)
+    postsx = Post.objects.filter(author=userx).order_by('posted_date')
+    context = {'userx': userx, 'profilex': profilex, 'postsx': postsx}
     return render(request, 'blog/user_page.html', context)
