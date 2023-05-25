@@ -1,9 +1,12 @@
 from django import forms
-from .models import Post, Profile
+from .models import Post, Profile, User
 
 
 class DateInput(forms.DateInput):
     input_type = 'date'
+
+class EmailInput(forms.EmailInput):
+    input_type = 'email'
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -19,4 +22,12 @@ class ProfileForm(forms.ModelForm):
         fields = ["name", "birthdate", "location", "bio"]
         widgets = {
             'birthdate': DateInput(),
+        }
+
+class MailChangeForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ["email"]
+        widgets = {
+            'email': EmailInput(),
         }
