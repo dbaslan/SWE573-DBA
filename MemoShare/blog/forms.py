@@ -16,4 +16,4 @@ class PostForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ["first_name", "Last_name", "birthdate", "location", "bio"]
+        fields = ["firstname", "lastname", "birthdate", "location", "bio"]
