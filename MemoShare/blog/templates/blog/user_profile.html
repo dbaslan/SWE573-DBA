@@ -22,7 +22,7 @@
         <a class="btn btn-secondary" href="profile/password">
             {% include './icons/pencil-fill.svg' %} <p> Change Password </p>
         </a>
-        <a class="btn btn-outline-danger" href="{% url 'user_delete' %}">
+        <a class="btn btn-outline-danger" href="{% url 'profile_delete' %}" onclick="return confirm('Are you sure? This is permanent');">
             {% include './icons/trash.svg' %} Delete User
         </a>
     </aside>
