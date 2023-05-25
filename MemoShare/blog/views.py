@@ -189,9 +189,9 @@ def user_profile_edit(request):
         form = ProfileForm(instance=profile)
     return render(request, 'blog/user_profile_edit.html', {'form': form})
 
-def user_page(request, username):
-    user = get_object_or_404(User, username=username)
+def user_page(request, usernamex):
+    user = get_object_or_404(User, username=usernamex)
     profile = Profile.objects.get(user=user)
     posts = Post.objects.filter(author=user).order_by('posted_date')
-    context = {'user': user, 'profile': profile, 'posts': posts}
+    context = {'profile': profile, 'posts': posts}
     return render(request, 'blog/user_page.html', context)
