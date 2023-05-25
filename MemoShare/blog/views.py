@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Post, Profile, Like, Comment
 from .forms import PostForm, ProfileForm
@@ -187,3 +188,10 @@ def user_profile_edit(request):
     else:
         form = ProfileForm(instance=profile)
     return render(request, 'blog/user_profile_edit.html', {'form': form})
+
+def user_page(request, username):
+    user = get_object_or_404(User, username=username)
+    profile = Profile.objects.get(user=user)
+    posts = Post.objects.filter(author=user).order_by('posted_date')
+    context = {'user': user, 'profile': profile, 'posts': posts}
+    return render(request, 'blog/user_page.html', context)
