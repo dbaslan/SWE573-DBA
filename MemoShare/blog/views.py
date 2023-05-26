@@ -155,6 +155,9 @@ def about(request):
     post = random.choice(Post.objects.all())
     return render(request, 'blog/about.html', {'post': post})
 
+def contact(request):
+    return render(request, 'blog/contact.html')
+
 def user_register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
