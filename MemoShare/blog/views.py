@@ -159,15 +159,15 @@ def about(request):
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
-    if form.is_valid():
-        name = form.cleaned_data['name']
-        email = form.cleaned_data['email']
-        message = form.cleaned_data['message']
-        file = open('responses.csv', 'a')
-        writer = csv.writer(file)
-        writer.writerow([name,email,message])
-        file.close()
-        return redirect('contact')
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            file = open('responses.csv', 'a')
+            writer = csv.writer(file)
+            writer.writerow([name,email,message])
+            file.close()
+            return redirect('contact')
     else:
         form = ContactForm()
     return render(request, 'blog/contact.html', {'form': form})

@@ -6,5 +6,11 @@
 
     <h1>Would you like to contact us?</h1>
     <p>We are working hard on making MemoShare better for everyone, and we would love to hear your comments and answer your questions!</p>
+    
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-secondary">Save</button>
+    </form><br><br>
 
 {% endblock %}
