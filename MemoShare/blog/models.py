@@ -19,6 +19,7 @@ class Post(models.Model):
     geolocation = map_fields.GeoLocationField(max_length=100, blank=True, null=True)
     tags = TaggableManager()
     likes = models.ManyToManyField(get_user_model(), related_name='liked_posts', through='Like')
+    image = models.ImageField(null=True, blank=True, upload_to="images/")
 
 
     def publish(self):
