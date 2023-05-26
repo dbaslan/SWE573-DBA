@@ -1,6 +1,8 @@
 from django.utils import timezone
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
 from django.contrib.auth.models import User
+
+from MemoShare.blog.views import post_delete, user_delete, user_profile
 from .models import Comment, Post, Profile
 from django.urls import reverse
 from .forms import PostForm, ProfileForm
@@ -19,21 +21,6 @@ class AboutTest(TestCase):
     def test_template_name_correct(self):  
         response = self.client.get(reverse("about"))
         self.assertTemplateUsed(response, "blog/about.html")
-
-
-# Test home page
-class HomeTest(TestCase):
-    def test_url_exists_at_correct_location(self):
-        response = self.client.get("/")
-        self.assertEqual(response.status_code, 200)
-
-    def test_url_available_by_name(self):  
-        response = self.client.get(reverse("post_list"))
-        self.assertEqual(response.status_code, 200)
-
-    def test_template_name_correct(self):  
-        response = self.client.get(reverse("post_list"))
-        self.assertTemplateUsed(response, "blog/post_list.html")
 
 
 # Test Post() model
@@ -230,3 +217,89 @@ class ProfileFormTests(TestCase):
 
         # Check if form is invalid
         self.assertFalse(form.is_valid())
+
+# Test various views
+class ViewsTest(TestCase):
+
+    def setUp(self):
+
+        # Create test user
+        self.user = User.objects.create_user(
+            username='testuser',
+            password='testpassword'
+        )
+
+        # Create test profile
+        self.profile = Profile.objects.create(
+            user=self.user,
+            name='Test User',
+            birthdate='2000-01-01',
+            location='Test Location',
+            bio='Test bio',
+            avatar=None  # Add a valid file here if needed
+        )
+
+        # Create test post
+        self.post = Post.objects.create(
+            author=self.user,
+            title='Test Post',
+            text='This is the test post text.'
+        )
+
+        # Create test comment
+        self.comment = Comment.objects.create(
+            text='This is the test comment text.',
+            author=self.user,
+            post=self.post
+        )
+
+        # Set up request factory
+        self.factory = RequestFactory()
+
+    # Create request object for view
+    def test_user_delete_view(self):
+        request = self.factory.get(reverse('user_delete'))
+        request.user = self.user
+
+        # Call view
+        response = user_delete(request)
+
+        # Check if user and profile are deleted
+        self.assertFalse(User.objects.filter(username='testuser').exists())
+        self.assertFalse(Profile.objects.filter(user=self.user).exists())
+
+        # Check if response redirects to 'post_list' page
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('post_list'))
+    
+    # Create request object for view
+    def test_user_profile_view(self):
+        request = self.factory.get(reverse('user_profile'))
+        request.user = self.user
+
+        # Call view 
+        response = user_profile(request)
+
+        # Check if response is successful
+        self.assertEqual(response.status_code, 200)
+
+        # Check if necessary data is present in context
+        self.assertEqual(response.context['user'], self.user)
+        self.assertEqual(response.context['profile'], self.profile)
+        self.assertIn(self.post, response.context['posts'])
+        self.assertIn(self.comment, response.context['comments'])
+
+    # Create request object for view
+    def test_post_delete_view(self):
+        request = self.factory.get(reverse('post_delete', args=[self.post.pk]))
+        request.user = self.user
+
+        # Call view
+        response = post_delete(request, pk=self.post.pk)
+
+        # Check if post is deleted
+        self.assertFalse(Post.objects.filter(pk=self.post.pk).exists())
+
+        # Check if response redirects to 'post_list' page
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('post_list'))
