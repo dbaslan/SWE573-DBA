@@ -19,7 +19,7 @@ class PostForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ["name", "birthdate", "location", "bio"]
+        fields = ["name", "birthdate", "location", "bio", "avatar"]
         widgets = {
             'birthdate': DateInput(),
         }
