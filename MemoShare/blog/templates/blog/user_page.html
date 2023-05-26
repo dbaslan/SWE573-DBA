@@ -27,13 +27,13 @@
           <b> Followed by : {{ profilex.followers.count }}</b>
           <p>
             {% for follower in profilex.followers.all %}
-                @<a href="{% url 'user_page' usernamex=follower %}">{{ follower }}</a>
+                @<a href="{% url 'user_page' usernamex=follower %}">{{ follower }}<img src="{{ follower.avatar.url }}" alt="mdo" width="32" height="32" class="rounded-circle"></a>
             {% endfor %}
           </p>
           <b> Following : {{ profilex.follows.count }}</b>
           <p>
             {% for followed in profilex.follows.all %}
-                @<a href="{% url 'user_page' usernamex=followed %}">{{ followed }}</a>
+                @<a href="{% url 'user_page' usernamex=followed %}">{{ followed }}<img src="{{ followed.avatar.url }}" alt="mdo" width="32" height="32" class="rounded-circle"></a>
             {% endfor %}
           </p>
         </div>
