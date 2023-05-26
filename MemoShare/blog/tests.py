@@ -3,7 +3,8 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from .models import Comment, Post, Profile
 from django.urls import reverse
-from .forms import PostForm
+from .forms import PostForm, ProfileForm
+
 
 # Test info page
 class AboutTest(TestCase):
@@ -19,6 +20,7 @@ class AboutTest(TestCase):
         response = self.client.get(reverse("about"))
         self.assertTemplateUsed(response, "blog/about.html")
 
+
 # Test home page
 class HomeTest(TestCase):
     def test_url_exists_at_correct_location(self):
@@ -32,6 +34,7 @@ class HomeTest(TestCase):
     def test_template_name_correct(self):  
         response = self.client.get(reverse("post_list"))
         self.assertTemplateUsed(response, "blog/post_list.html")
+
 
 # Test Post() model
 class PostTests(TestCase):
@@ -69,6 +72,7 @@ class PostTests(TestCase):
     def test_post_string_representation(self):
         expected_str = self.post.title
         self.assertEqual(str(self.post), expected_str)
+
 
 # Test Profile() model
 class ProfileTest(TestCase):
@@ -111,6 +115,7 @@ class ProfileTest(TestCase):
         profile = Profile.objects.get(user=new_user)
         self.assertIsNotNone(profile)
 
+
 # Test Comment() model
 class CommentTest(TestCase):
 
@@ -150,6 +155,7 @@ class CommentTest(TestCase):
         expected_str = self.comment.text
         self.assertEqual(str(self.comment), expected_str)
 
+
 # Test PostForm() form
 class PostFormTest(TestCase):
 
@@ -158,7 +164,7 @@ class PostFormTest(TestCase):
         # Create dictionary with valid data
         form_data = {
             'title': 'Test Post',
-            'text': 'This is the test post text.',
+            'text': 'Text',
             'tags': 'tag1, tag2',
             'location': 'Test Location',
             'memory_date': '2022-01-01',
@@ -175,7 +181,7 @@ class PostFormTest(TestCase):
     def test_invalid_post_form(self):
         form_data = {
             'title': '',
-            'text': 'This is the test post text.',
+            'text': 'Text',
             'tags': 'tag1, tag2',
             'location': 'Test Location',
             'memory_date': '2022-01-01',
@@ -184,6 +190,43 @@ class PostFormTest(TestCase):
 
         # Create form instance with data
         form = PostForm(data=form_data)
+
+        # Check if form is invalid
+        self.assertFalse(form.is_valid())
+
+
+# Test ProfileForm() form
+class ProfileFormTests(TestCase):
+
+    def test_valid_profile_form(self):
+
+        # Create dictionary with data
+        form_data = {
+            'name': 'John Doe',
+            'birthdate': '2000-01-01',
+            'location': 'Test Location',
+            'bio': 'Text',
+            'avatar': None
+        }
+
+        # Create form instance with data
+        form = ProfileForm(data=form_data)
+
+        # Check if form is valid
+        self.assertTrue(form.is_valid())
+
+    # Create dictionary with invalid data
+    def test_invalid_profile_form(self):
+        form_data = {
+            'name': '',
+            'birthdate': '2000-01-01',
+            'location': 'Test Location',
+            'bio': 'Text',
+            'avatar': None
+        }
+
+        # Create form instance with data
+        form = ProfileForm(data=form_data)
 
         # Check if form is invalid
         self.assertFalse(form.is_valid())
