@@ -3,6 +3,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from .models import Comment, Post, Profile
 from django.urls import reverse
+from .forms import PostForm
 
 # Test info page
 class AboutTest(TestCase):
@@ -75,10 +76,7 @@ class ProfileTest(TestCase):
     def setUp(self):
 
         # Create a test user
-        self.user = User.objects.create_user(
-            username='testuser',
-            password='testpassword'
-        )
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
 
         # Create a profile for the test user
         self.profile = Profile.objects.create(
@@ -119,10 +117,7 @@ class CommentTest(TestCase):
     def setUp(self):
 
         # Create test user
-        self.user = User.objects.create_user(
-            username='testuser',
-            password='testpassword'
-        )
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
 
         # Create test post
         self.post = Post.objects.create(
@@ -152,5 +147,43 @@ class CommentTest(TestCase):
 
     # Test __str__() method
     def test_comment_string_representation(self):
-        expected_str = self.comment.text[:50] + '...'
+        expected_str = self.comment.text
         self.assertEqual(str(self.comment), expected_str)
+
+# Test PostForm() form
+class PostFormTest(TestCase):
+
+    def test_valid_post_form(self):
+
+        # Create dictionary with valid data
+        form_data = {
+            'title': 'Test Post',
+            'text': 'This is the test post text.',
+            'tags': 'tag1, tag2',
+            'location': 'Test Location',
+            'memory_date': '2022-01-01',
+            'image': None
+        }
+
+        # Create form instance with data
+        form = PostForm(data=form_data)
+
+        # Check if form is valid
+        self.assertTrue(form.is_valid())
+
+    # Create dictionary with invalid data
+    def test_invalid_post_form(self):
+        form_data = {
+            'title': '',
+            'text': 'This is the test post text.',
+            'tags': 'tag1, tag2',
+            'location': 'Test Location',
+            'memory_date': '2022-01-01',
+            'image': None
+        }
+
+        # Create form instance with data
+        form = PostForm(data=form_data)
+
+        # Check if form is invalid
+        self.assertFalse(form.is_valid())
