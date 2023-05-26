@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+
+{% block title %} {{ comment.post.title }} {% endblock title %}
+
+{% block content %}
+
+    <aside class="actions">
+        {% if user.is_authenticated and post.author.id == user.id %}
+            <a class="btn btn-primary" href="{% url 'comment_edit' pk=comment.pk %}">
+                {% include './icons/pencil-fill.svg' %} Edit
+            </a>
+            <a class="btn btn-outline-danger" href="{% url 'comment_delete' pk=comment.pk %}" onclick="return confirm('Are you sure? This is permanent');">
+                {% include './icons/trash.svg' %} Delete
+            </a>
+        {% endif %}
+    </aside>
+
+
+    <h2>{{ post.title }}</h2>
+
+    <p>{{ post.text|linebreaksbr }}</p>
+
+    <div class="comment">
+        <p><b>Posted By: </b><a href="{% url 'user_page' usernamex=comment.author %}">{{ comment.author }}</a></p>
+        <p><b>Date posted: </b></p>
+        <time class="date">
+            {{ comment.posted_date }}
+        </time>
+        <p>{{ comment.text }}</p>
+    </div>
+        
+
+          <!-- Comment form -->
+          {% if user.is_authenticated %}
+            <div class="comment-form">
+              <h3>Add a comment</h3>
+              <form method="POST" action="{% url 'post_detail' post.pk %}">
+                {% csrf_token %}
+                <textarea name="comment_text" placeholder="Write your comment here"></textarea>
+                <br>
+                <button type="submit" class="btn btn-primary">Post Comment</button>
+              </form>
+            </div>
+          {% endif %}
+        
+{% endblock %}
