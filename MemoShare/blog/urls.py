@@ -16,6 +16,7 @@ urlpatterns = [
     path('post/<int:pk>/delete/', views.post_delete, name='post_delete'),
     path('search', views.post_search, name='post_search'),
     path('about', views.about, name='about'),
+    path('contact', views.contact, name='contact'),
     path('user/<str:usernamex>/', views.user_page, name='user_page'),
     path('profile', views.user_profile, name='user_profile'),
     path('profile/edit', views.user_profile_edit, name='user_profile_edit'),
