@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'taggit'
     "MemoShare",
     "blog",
-    "django_google_maps"
+    "django_google_maps",
+    'address'
 ]
 
 SITE_ID = 1
