@@ -32,7 +32,8 @@
             </p>
         {% endif %}
 
-        <p><b>Posted by: </b><a href="{% url 'user_page' usernamex=post.author %}"> {{ post.author|linebreaksbr }}</a></p>
+        <p><img src="{{ post.author.profile.avatar.url }}" alt="mdo" width="32" height="32" class="rounded-circle">  <a href="{% url 'user_page' usernamex=post.author %}"> {{ post.author|linebreaksbr }}</a></p>
+
         
         <p><b>Date posted:</b>
             <time class="date">
@@ -76,7 +77,7 @@
             <h3><b>Comments</b></h3>
             {% for comment in comments %}
               <div class="comment">
-                <p><a href="{% url 'user_page' usernamex=comment.author %}">{{ comment.author }}</a> says:</p>
+                <p><img src="{{ comment.author.profile.avatar.url }}" alt="mdo" width="32" height="32" class="rounded-circle">   <a href="{% url 'user_page' usernamex=comment.author %}">{{ comment.author }}</a> says:</p>
                 <p>{{ comment.text }}</p>
                 <time class="date">
                     {{ comment.posted_date }}
