@@ -6,13 +6,6 @@
 
     {% if user.is_authenticated %}
     <h1>Hello, {{request.user.username}}!</h1><br>
-    <img src="{{ profile.avatar.url }}" width="400"><br><br>        
-    <h2>Name: {{profile.name}}</h2><br>
-    <h2>Date Joined: {{request.user.date_joined}}</h2><br>
-    <h2>E-mail Address: {{request.user.email}}</h2><br>
-    <h2>Birthday: {{profile.birthdate}}</h2><br>
-    <h2>Location: {{profile.location}}</h2><br>
-    <h2>Bio: {{profile.bio}}</h2><br>
     <aside class="actions">
         <a class="btn btn-secondary" href="{% url 'user_profile_edit' %}">
             {% include './icons/pencil-fill.svg' %} Edit Profile 
@@ -23,10 +16,17 @@
         <a class="btn btn-secondary" href="profile/password">
             {% include './icons/pencil-fill.svg' %} Change Password 
         </a>
-        <a class="btn btn-outline-danger" href="{% url 'profile_delete' %}" onclick="return confirm('Are you sure? This is permanent');">
+        <a class="btn btn-outline-danger" href="{% url 'profile_delete' %}" onclick="return confirm('Are you sure? This is permanent.');">
             {% include './icons/trash.svg' %} Delete User
         </a>
-    </aside>
+    </aside><br><br>
+    <img src="{{ profile.avatar.url }}" width="400"><br><br>        
+    <h2>Name: {{profile.name}}</h2><br>
+    <h2>Date Joined: {{request.user.date_joined}}</h2><br>
+    <h2>E-mail Address: {{request.user.email}}</h2><br>
+    <h2>Birthday: {{profile.birthdate}}</h2><br>
+    <h2>Location: {{profile.location}}</h2><br>
+    <h2>Bio: {{profile.bio}}</h2><br>
     <br><br>
     <h2>Your Posts</h2><br>
         {% if posts %}
@@ -42,7 +42,7 @@
                             <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">
                                 {% include './icons/pencil-fill.svg' %} Edit
                             </a>
-                            <a class="btn btn-outline-danger" href="{% url 'post_delete' pk=post.pk %}" onclick="return confirm('Are you sure? This is permanent');">
+                            <a class="btn btn-outline-danger" href="{% url 'post_delete' pk=post.pk %}" onclick="return confirm('Are you sure? This is permanent.');">
                                 {% include './icons/trash.svg' %} Delete
                             </a>
                         {% endif %}
