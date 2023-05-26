@@ -1,12 +1,14 @@
 from django.contrib import admin
+from django import forms
 from .models import Post, Profile
-from django_google_maps import widgets as map_widgets
-from django_google_maps import fields as map_fields
+from easy_maps.widgets import AddressWithMapWidget
+
+class PostAdmin(admin.ModelAdmin):
+    class form(forms.ModelForm):
+        class Meta:
+            widgets = {
+                'location': AddressWithMapWidget({'class': 'vTextField'})
+            }
 
 admin.site.register(Post)
 admin.site.register(Profile)
-
-class PostAdmin(admin.ModelAdmin):
-    formfield_overrides = {
-        map_fields.AddressField: {'widget': map_widgets.GoogleMapsAddressWidget},
-    }

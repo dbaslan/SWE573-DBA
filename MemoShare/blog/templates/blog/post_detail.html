@@ -1,5 +1,5 @@
 {% extends 'blog/base.html' %}
-
+{% load easy_maps_tags %}
 {% block title %} {{ post.title }} {% endblock title %}
 
 {% block content %}
@@ -34,7 +34,6 @@
 
         <p><img src="{{ post.author.profile.avatar.url }}" alt="mdo" width="32" height="32" class="rounded-circle">  <a href="{% url 'user_page' usernamex=post.author %}"> {{ post.author|linebreaksbr }}</a></p>
 
-        
         <p><b>Date posted:</b>
             <time class="date">
                 {{ post.posted_date }}
@@ -46,13 +45,27 @@
                 {{ post.memory_date| date:"M d, Y" }}
             </time>
         </p>
-
-        <p><b>Location of Memory:</b>
-          <time class="date">
-              {{ post.location }}
-          </time>
-        </p>
         
+        {% if post.location %}
+        <p><b>Location of Memory:</b>
+          {{ post.location }}
+            <div id = "map">
+              {% easy_map post.location 600 300 %}
+            </div>
+            <button onclick="myFunction()">Toggle Map</button>
+            <script>
+            function myFunction() {
+              if (document.getElementById("map").style.display == "none"){
+                document.getElementById("map").style.display = ""
+              }
+              else {
+                document.getElementById("map").style.display = "none"
+              }
+            }
+            </script>
+        </p>
+        {% endif %}
+              
         <p><b>Likes:</b> {{ post.total_likes }}</p>
         {% if user.is_authenticated %}
           {% if is_liked %}
@@ -75,7 +88,7 @@
 
         <br><br>
         <div class="comments">
-            <h3><b>Comments</b></h3><br>
+            <h3><b>Comments ({{comments.count}})</b></h3><br>
             {% for comment in comments %}
               <div class="comment">
                 <p><img src="{{ comment.author.profile.avatar.url }}" alt="mdo" width="32" height="32" class="rounded-circle">   <a href="{% url 'user_page' usernamex=comment.author %}">{{ comment.author }}</a> says:</p>

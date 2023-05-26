@@ -1,7 +1,6 @@
 from django import forms
 from .models import Post, Profile, User, Comment
 
-
 class DateInput(forms.DateInput):
     input_type = 'date'
 

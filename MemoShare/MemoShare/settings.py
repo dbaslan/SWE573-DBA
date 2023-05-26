@@ -23,6 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 GOOGLE_MAPS_API_KEY = str(os.getenv('GOOGLE_MAPS_API_KEY'))
+EASY_MAPS_GOOGLE_KEY = str(os.getenv('EASY_MAPS_GOOGLE_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -44,8 +45,12 @@ INSTALLED_APPS = [
     'taggit'
     "MemoShare",
     "blog",
-    "django_google_maps",
-    'address'
+    'address',
+    "location_field.apps.DefaultConfig",
+    "mapbox_location_field",
+    'easy_maps',
+    'django_easy_maps',
+    'easy_maps_tags',
 ]
 
 SITE_ID = 1

@@ -78,7 +78,7 @@
                     <time class="date">
                         {{ comment.posted_date }}
                     </time>
-                    <h3><a href="{% url 'post_detail' pk=comment.post.pk %}">{{ post.title }}</a></h3>
+                    <h3><a href="{% url 'post_detail' pk=comment.post.pk %}">{{ comment.post.title }}</a></h3>
                     <p>{{ comment.text|linebreaksbr }}</p>
                     <aside class="actions">
                         {% if comment.author.id == user.id %}
