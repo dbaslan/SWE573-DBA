@@ -130,6 +130,21 @@ def post_search(request):
     }
     return render(request, 'blog/post_search.html', context)
 
+@login_required
+def comment_edit(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.save()
+            form.save_m2m()
+            return redirect('post_detail', pk=comment.post.pk)
+    else:
+        form = CommentForm(instance=comment)
+    return render(request, 'blog/comment_edit.html', {'form': form})
+
 def about(request):
     post = random.choice(Post.objects.all())
     return render(request, 'blog/about.html', {'post': post})
