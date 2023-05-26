@@ -7,9 +7,10 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Post, Profile, Like, Comment
-from .forms import PostForm, ProfileForm, MailChangeForm, CommentForm
+from .forms import PostForm, ProfileForm, MailChangeForm, CommentForm, ContactForm
 import random
 from taggit.models import Tag
+import csv
 
 def post_list(request):
     posts = Post.objects.filter(posted_date__lte=timezone.now()).order_by('posted_date')
@@ -156,7 +157,20 @@ def about(request):
     return render(request, 'blog/about.html', {'post': post})
 
 def contact(request):
-    return render(request, 'blog/contact.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+    if form.is_valid():
+        name = form.cleaned_data['name']
+        email = form.cleaned_data['email']
+        message = form.cleaned_data['message']
+        file = open('responses.csv', 'a')
+        writer = csv.writer(file)
+        writer.writerow([name,email,message])
+        file.close()
+        return redirect('contact')
+    else:
+        form = ContactForm()
+    return render(request, 'blog/contact.html', {'form': form})
 
 def user_register(request):
     if request.method == 'POST':
