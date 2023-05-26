@@ -16,7 +16,8 @@
                         #{{ tag }}
                     {% endfor %}
                 </p>
-                {% endif %}    
+            {% endif %}
+            <p><img src="{{ post.author.profile.avatar.url }}" alt="mdo" width="32" height="32" class="rounded-circle">  <a href="{% url 'user_page' usernamex=post.author %}"> {{ post.author|linebreaksbr }}</a></p>    
         </article>
     {% endfor %}
 {% endblock %}
