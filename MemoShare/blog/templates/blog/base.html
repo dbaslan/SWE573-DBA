@@ -70,7 +70,7 @@
                   {% if user.is_authenticated %}
                     <div class="dropdown">
                       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ profile.avatar.url }}" alt="mdo" width="32" height="32" class="rounded-circle">  {{ user.username }}
+                        <img src="{{ user.profile.avatar.url }}" alt="mdo" width="32" height="32" class="rounded-circle">  {{ user.username }}
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="/profile" class="nav-link px-2 link-dark">Profile Settings</a>
