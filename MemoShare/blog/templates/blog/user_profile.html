@@ -72,7 +72,7 @@
                     <p>{{ comment.text|linebreaksbr }}</p>
                     <aside class="actions">
                         {% if comment.author.id == user.id %}
-                            <a class="btn btn-primary" href="{% url 'comment_edit' pk=commentt.pk %}">
+                            <a class="btn btn-primary" href="{% url 'comment_edit' pk=comment.pk %}">
                                 {% include './icons/pencil-fill.svg' %} Edit
                             </a>
                             <a class="btn btn-outline-danger" href="{% url 'comment_delete' pk=comment.pk %}" onclick="return confirm('Are you sure? This is permanent.');">
