@@ -60,6 +60,32 @@
     </form>
     <br><br>
 
+    <br><br>
+    <h2>Your Comments</h2><br>
+        {% if comments %}
+            {% for comment in comments %}
+                <article class="post">
+                    <time class="date">
+                        {{ comment.posted_date }}
+                    </time>
+                    <h3><a href="{% url 'post_detail' pk=comment.post.pk %}">{{ post.title }}</a></h3>
+                    <p>{{ comment.text|linebreaksbr }}</p>
+                    <aside class="actions">
+                        {% if comment.author.id == user.id %}
+                            <a class="btn btn-primary" href="{% url 'comment_edit' pk=commentt.pk %}">
+                                {% include './icons/pencil-fill.svg' %} Edit
+                            </a>
+                            <a class="btn btn-outline-danger" href="{% url 'comment_delete' pk=comment.pk %}" onclick="return confirm('Are you sure? This is permanent.');">
+                                {% include './icons/trash.svg' %} Delete
+                            </a>
+                        {% endif %}
+                    </aside>
+                </article>
+            {% endfor %}
+        {% else %}
+            <p>You have not made any comments yet.</p>
+        {% endif %}
+
     {% if not user.is_authenticated %}
     <h1>Please register, or log in if you are already registered.</h1>
     {% endif %}
