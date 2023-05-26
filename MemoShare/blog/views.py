@@ -179,7 +179,8 @@ def user_profile(request):
     user = request.user
     profile = Profile.objects.get(user=user)
     posts = Post.objects.filter(author=user).order_by('posted_date')
-    context = {'user': user, 'profile': profile, 'posts': posts}
+    comments = Comment.objects.filter(author=user).order_by('posted_date')
+    context = {'user': user, 'profile': profile, 'posts': posts, 'comments': comments}
     return render(request, 'blog/user_profile.html', context)
 
 @login_required
