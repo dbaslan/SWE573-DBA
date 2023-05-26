@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Profile, User
+from .models import Post, Profile, User, Comment
 
 
 class DateInput(forms.DateInput):
@@ -31,3 +31,8 @@ class MailChangeForm(forms.ModelForm):
         widgets = {
             'email': EmailInput(),
         }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ("text")
