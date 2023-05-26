@@ -167,6 +167,7 @@ def contact(request):
             writer = csv.writer(file)
             writer.writerow([name,email,message])
             file.close()
+            messages.success(request, 'Thank you for reaching out, your message has been recorded!')
             return redirect('contact')
     else:
         form = ContactForm()
