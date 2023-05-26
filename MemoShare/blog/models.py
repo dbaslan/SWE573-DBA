@@ -57,6 +57,7 @@ class Profile(models.Model):
     bio = models.TextField(max_length=1000, blank=True)
     location = map_fields.AddressField(max_length=200, blank=True, null=True)
     birthdate = models.DateField(null=True, blank=True)
+    follows = models.ManyToManyField("self", blank=True, symmetrical=False, related_name="followers")
 
     def __str__(self):
         return self.user.username

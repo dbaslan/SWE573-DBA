@@ -4,7 +4,6 @@ from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Post, Profile, Like, Comment
@@ -223,8 +222,16 @@ def user_mail_edit(request):
     return render(request, 'blog/user_mail_edit.html', {'form': form})
 
 def user_page(request, usernamex):
-    userx = get_object_or_404(User, username=usernamex)
+    userx = User.objects.get(username=usernamex)
     profilex = Profile.objects.get(user=userx)
+    profile = request.user.profile
+    if request.user.is_authenticated and request.method == "POST":
+        button = request.POST["follow"]
+        if button == "follow":
+            profile.follows.add(profilex)
+        elif button == "unfollow":
+            profile.follows.remove(profilex)
+        profile.save()
     postsx = Post.objects.filter(author=userx).order_by('posted_date')
-    context = {'userx': userx, 'profilex': profilex, 'postsx': postsx}
+    context = {'userx': userx, 'profile': profile, 'profilex': profilex, 'postsx': postsx}
     return render(request, 'blog/user_page.html', context)
