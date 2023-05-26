@@ -59,6 +59,7 @@ class Profile(models.Model):
     location = map_fields.AddressField(max_length=200, blank=True, null=True)
     birthdate = models.DateField(null=True, blank=True)
     follows = models.ManyToManyField("self", blank=True, symmetrical=False, related_name="followers")
+    avatar = models.ImageField(default='default.jpg',  upload_to='profile_pics/')
 
     def __str__(self):
         return self.user.username
