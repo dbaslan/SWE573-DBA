@@ -68,6 +68,10 @@
         {% endif %}
         <br>
 
+        {% if post.image %}
+        <img src="{{ post.image.url }}">
+        {% endif %}
+
         <div class="comments">
             <h3><b>Comments</b></h3>
             {% for comment in comments %}
