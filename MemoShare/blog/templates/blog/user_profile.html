@@ -33,13 +33,15 @@
         </div>
     </div>
 
-    <h2>Bio: {{profile.bio}}</h2><br>
+    <div style="background-color:rgba(0,0,0,0.1)">
+        <h2>Bio: {{profile.bio}}</h2><br>  
+    </div>
     <br><br>
 
     <h2>Your Posts</h2><br>
         {% if posts %}
             {% for post in posts %}
-                <article class="post">
+                <article class="post" style="background-color:rgba(0,0,0,0.1)">
                     <time class="date">
                         {{ post.posted_date }}
                     </time>
@@ -72,7 +74,7 @@
     <h2>Your Comments</h2><br>
         {% if comments %}
             {% for comment in comments %}
-                <article class="post">
+                <article class="post" style="background-color:rgba(0,0,0,0.1)">
                     <time class="date">
                         {{ comment.posted_date }}
                     </time>
