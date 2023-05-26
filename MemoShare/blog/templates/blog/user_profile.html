@@ -15,13 +15,13 @@
     <h2>Bio: {{profile.bio}}</h2><br>
     <aside class="actions">
         <a class="btn btn-secondary" href="{% url 'user_profile_edit' %}">
-            {% include './icons/pencil-fill.svg' %} <p> Edit Profile </p>
+            {% include './icons/pencil-fill.svg' %} Edit Profile 
         </a>
         <a class="btn btn-secondary" href="{% url 'user_mail_edit' %}">
-            {% include './icons/pencil-fill.svg' %} <p> Update Email Address </p>
+            {% include './icons/pencil-fill.svg' %} Update Email Address
         </a>
         <a class="btn btn-secondary" href="profile/password">
-            {% include './icons/pencil-fill.svg' %} <p> Change Password </p>
+            {% include './icons/pencil-fill.svg' %} Change Password 
         </a>
         <a class="btn btn-outline-danger" href="{% url 'profile_delete' %}" onclick="return confirm('Are you sure? This is permanent');">
             {% include './icons/trash.svg' %} Delete User
