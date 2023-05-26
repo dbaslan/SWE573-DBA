@@ -7,6 +7,7 @@ class DateInput(forms.DateInput):
 class EmailInput(forms.EmailInput):
     input_type = 'email'
 
+# Form for making new post and editing
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
@@ -15,6 +16,7 @@ class PostForm(forms.ModelForm):
             'memory_date': DateInput(),
         }
 
+# Form for editing profile settings
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
@@ -23,6 +25,7 @@ class ProfileForm(forms.ModelForm):
             'birthdate': DateInput(),
         }
 
+# Form for changing email address
 class MailChangeForm(forms.ModelForm):
     class Meta:
         model = User
@@ -31,11 +34,13 @@ class MailChangeForm(forms.ModelForm):
             'email': EmailInput(),
         }
 
+# Form for editing comments
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ("text",)
 
+# Form for sending message to admin
 class ContactForm(forms.Form):
     name = forms.CharField(required=True)
     email = forms.EmailField(required=True)
