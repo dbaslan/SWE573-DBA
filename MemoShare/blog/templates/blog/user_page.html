@@ -3,14 +3,21 @@
 {% block title %} {{userx.username}}'s Page {% endblock title %}
 
 {% block content %}
+    
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <div>
+            <img src="{{ profilex.avatar.url }}" width="400"><br><br> 
+        </div>
+        <div>
+            <h1>{{userx.username}}'s User Page</h1><br>
+            <h2>Name: {{profilex.name}}</h2><br>
+            <h2>Date Joined: {{userx.date_joined}}</h2><br>
+            <h2>Birthday: {{profilex.birthdate}}</h2><br>
+            <h2>Location: {{profilex.location}}</h2><br>
+        </div>
+    </div>
 
-    <h1>{{userx.username}}'s User Page</h1><br>
-    <img src="{{ profilex.avatar.url }}" width="400"><br><br>     
-    <h2>Name: {{profilex.name}}</h2><br>
-    <h2>Date Joined: {{userx.date_joined}}</h2><br>
-    <h2>Birthday: {{profilex.birthdate}}</h2><br>
-    <h2>Location: {{profilex.location}}</h2><br>
-    <h2>About this user: </h2>
+    <h2>About this user </h2>
     <p>{{profilex.bio}}</p><br>
 
     <div class="mt-3">
