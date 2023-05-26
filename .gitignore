@@ -282,3 +282,11 @@ MemoShare/data.json
 
 # Code snippets #
 snippets/
+
+#Media files#
+media/
+profile_pics/
+images/
+Diagrams/
+Mockups/
+Backups/
