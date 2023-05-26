@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django.test import TestCase
 from django.contrib.auth.models import User
-from .models import Post, Profile
+from .models import Comment, Post, Profile
 from django.urls import reverse
 
 # Test info page
@@ -84,7 +84,7 @@ class ProfileTest(TestCase):
         self.profile = Profile.objects.create(
             user=self.user,
             name='Test User',
-            bio='This is the test user bio',
+            bio='Test Bio',
             location='Test Location',
             birthdate='2000-01-01',
             avatar='profile_pics/test.png'
@@ -94,7 +94,7 @@ class ProfileTest(TestCase):
     def test_profile_creation(self):
         self.assertEqual(self.profile.user, self.user)
         self.assertEqual(self.profile.name, 'Test User')
-        self.assertEqual(self.profile.bio, 'This is the test user bio')
+        self.assertEqual(self.profile.bio, 'Test Bio')
         self.assertEqual(self.profile.location, 'Test Location')
         self.assertEqual(self.profile.birthdate, '2000-01-01')
         self.assertEqual(self.profile.avatar, 'profile_pics/test.png')
@@ -112,3 +112,45 @@ class ProfileTest(TestCase):
         )
         profile = Profile.objects.get(user=new_user)
         self.assertIsNotNone(profile)
+
+# Test Comment() model
+class CommentTest(TestCase):
+
+    def setUp(self):
+
+        # Create test user
+        self.user = User.objects.create_user(
+            username='testuser',
+            password='testpassword'
+        )
+
+        # Create test post
+        self.post = Post.objects.create(
+            author=self.user,
+            title='Test Post',
+            text='This is the test post text.',
+            posted_date=timezone.now(),
+            memory_date=timezone.now(),
+            location='Test Location',
+            image='images/test.png'
+        )
+
+        # Create test comment
+        self.comment = Comment.objects.create(
+            text='This is the test comment text.',
+            posted_date=timezone.now(),
+            author=self.user,
+            post=self.post
+        )
+
+    # Test comment creation
+    def test_comment_creation(self):
+        self.assertEqual(self.comment.text, 'This is the test comment text.')
+        self.assertIsNotNone(self.comment.posted_date)
+        self.assertEqual(self.comment.author, self.user)
+        self.assertEqual(self.comment.post, self.post)
+
+    # Test __str__() method
+    def test_comment_string_representation(self):
+        expected_str = self.comment.text[:50] + '...'
+        self.assertEqual(str(self.comment), expected_str)
