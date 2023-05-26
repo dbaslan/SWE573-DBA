@@ -47,7 +47,7 @@ class PostTests(TestCase):
         self.post = Post.objects.create(
             author=self.user,
             title='Test Post',
-            text='This is the test post text.',
+            text='Text',
             posted_date=timezone.now(),
             memory_date=timezone.now(),
             location='Test Location',
@@ -58,7 +58,7 @@ class PostTests(TestCase):
     def test_post_creation(self):
         self.assertEqual(self.post.author, self.user)
         self.assertEqual(self.post.title, 'Test Post')
-        self.assertEqual(self.post.text, 'This is the test post text.')
+        self.assertEqual(self.post.text, 'Text')
         self.assertIsNotNone(self.post.posted_date)
         self.assertIsNotNone(self.post.memory_date)
         self.assertEqual(self.post.location, 'Test Location')
@@ -128,7 +128,7 @@ class CommentTest(TestCase):
         self.post = Post.objects.create(
             author=self.user,
             title='Test Post',
-            text='This is the test post text.',
+            text='Text',
             posted_date=timezone.now(),
             memory_date=timezone.now(),
             location='Test Location',
@@ -137,7 +137,7 @@ class CommentTest(TestCase):
 
         # Create test comment
         self.comment = Comment.objects.create(
-            text='This is the test comment text.',
+            text='Text',
             posted_date=timezone.now(),
             author=self.user,
             post=self.post
@@ -145,7 +145,7 @@ class CommentTest(TestCase):
 
     # Test comment creation
     def test_comment_creation(self):
-        self.assertEqual(self.comment.text, 'This is the test comment text.')
+        self.assertEqual(self.comment.text, 'Text')
         self.assertIsNotNone(self.comment.posted_date)
         self.assertEqual(self.comment.author, self.user)
         self.assertEqual(self.comment.post, self.post)
