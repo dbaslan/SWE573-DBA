@@ -187,7 +187,7 @@ def user_profile_edit(request):
     user = request.user
     profile = Profile.objects.get(user=user)
     if request.method == "POST":
-        form = ProfileForm(request.POST, instance=profile)
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.save()
