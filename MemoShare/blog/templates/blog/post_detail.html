@@ -58,12 +58,12 @@
           {% if is_liked %}
             <form action="{% url 'post_unlike' post.pk %}" method="POST">
               {% csrf_token %}
-              <button type="submit" class="btn btn-danger">Unlike</button>
+              <button type="submit" class="btn btn-danger">{% include './icons/heartbreak-fill.svg' %} Unlike</button>
             </form>
           {% else %}
             <form action="{% url 'post_like' post.pk %}" method="POST">
               {% csrf_token %}
-              <button type="submit" class="btn btn-primary">Like</button>
+              <button type="submit" class="btn btn-primary">{% include './icons/heart-fill.svg' %} Like</button>
             </form>
           {% endif %}
         {% endif %}
