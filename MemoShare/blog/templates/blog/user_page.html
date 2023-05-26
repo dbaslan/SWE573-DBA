@@ -17,10 +17,12 @@
         </div>
     </div>
 
-    <h2>About this user </h2>
-    <p>{{profilex.bio}}</p><br>
+    <div style="background-color:rgba(0,0,0,0.1)">
+        <h2>About this user </h2>
+        <p>{{profilex.bio}}</p><br>
+    </div>
 
-    <div class="mt-3">
+    <div class="mt-3" style="background-color:rgba(0,0,0,0.1)">
         <div class="row">
           <b> Followed by : {{ profilex.followers.count }}</b>
           <p>
@@ -54,7 +56,7 @@
     <h2>{{userx.username}}'s Posts:</h2><br>
         {% if postsx %}
             {% for post in postsx %}
-                <article class="post">
+                <article class="post" style="background-color:rgba(0,0,0,0.1)">
                     <time class="date">
                         {{ post.posted_date }}
                     </time>
