@@ -11,7 +11,7 @@ class EmailInput(forms.EmailInput):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ("title", "text", "tags", "location", "memory_date")
+        fields = ("title", "text", "tags", "location", "memory_date", "image")
         widgets = {
             'memory_date': DateInput(),
         }
