@@ -145,6 +145,12 @@ def comment_edit(request, pk):
         form = CommentForm(instance=comment)
     return render(request, 'blog/comment_edit.html', {'form': form})
 
+@login_required
+def comment_delete(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.delete()
+    return redirect('post_list')
+
 def about(request):
     post = random.choice(Post.objects.all())
     return render(request, 'blog/about.html', {'post': post})
