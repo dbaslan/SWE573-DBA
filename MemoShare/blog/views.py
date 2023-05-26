@@ -54,16 +54,6 @@ def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('post_list')
-     
-"""
-def post_new(request):
-    if request.method == 'POST':
-        title = request.POST['title']
-        content = request.POST['content']
-        post = Post.objects.create(title=title, content=content, author=request.user)
-        return redirect('view_post', pk=post.pk)
-    return render(request, 'create_post.html')
-"""
 
 @login_required
 def post_edit(request, pk):
