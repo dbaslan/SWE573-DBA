@@ -7,7 +7,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Post, Profile, Like, Comment
-from .forms import PostForm, ProfileForm, MailChangeForm
+from .forms import PostForm, ProfileForm, MailChangeForm, CommentForm
 import random
 from taggit.models import Tag
 
