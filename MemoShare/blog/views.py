@@ -12,10 +12,12 @@ import random
 from taggit.models import Tag
 import csv
 
+# Display all posts at home screen
 def post_list(request):
     posts = Post.objects.filter(posted_date__lte=timezone.now()).order_by('posted_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
 
+# Display individual post
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     is_liked = post.likes.filter(id=request.user.id).exists()
@@ -35,6 +37,7 @@ def post_detail(request, pk):
 
     return render(request, 'blog/post_detail.html', {'post': post, 'is_liked': is_liked, 'comments': comments})
 
+# Make new post through form
 @login_required
 def post_new(request):
     if request.method == "POST":
@@ -50,12 +53,14 @@ def post_new(request):
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
 
+# Delete post
 @login_required
 def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('post_list')
 
+# Edit post through creation form
 @login_required
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -72,18 +77,21 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
 
+# Like post
 @login_required
 def post_like(request, pk):
     post = get_object_or_404(Post, pk=pk)
     like, created = Like.objects.get_or_create(user=request.user, post=post)
     return redirect('post_detail', pk=post.pk)
 
+# Unlike post
 @login_required
 def post_unlike(request, pk):
     post = get_object_or_404(Post, pk=pk)
     Like.objects.filter(user=request.user, post=post).delete()
     return redirect('post_detail', pk=post.pk)
 
+# Filter posts for advanced search
 def post_search(request):
     query = request.GET.get("query", "")
     author_query = request.GET.get("author", "")
@@ -131,6 +139,7 @@ def post_search(request):
     }
     return render(request, 'blog/post_search.html', context)
 
+# Edit comment through own form
 @login_required
 def comment_edit(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
@@ -146,16 +155,19 @@ def comment_edit(request, pk):
         form = CommentForm(instance=comment)
     return render(request, 'blog/comment_edit.html', {'form': form})
 
+# Delete comment
 @login_required
 def comment_delete(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('post_list')
 
+# Display welcome screen and pick random post
 def about(request):
     post = random.choice(Post.objects.all())
     return render(request, 'blog/about.html', {'post': post})
 
+# Display contact form and save message to csv
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -173,6 +185,7 @@ def contact(request):
         form = ContactForm()
     return render(request, 'blog/contact.html', {'form': form})
 
+# Create new user
 def user_register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -184,6 +197,7 @@ def user_register(request):
         form = UserCreationForm()
     return render(request, 'blog/user_register.html', {'form': form})
 
+# Log in with username and password
 def user_login(request):
 	if request.method == "POST":
 		form = AuthenticationForm(request, data=request.POST)
@@ -202,11 +216,13 @@ def user_login(request):
 	form = AuthenticationForm()
 	return render(request=request, template_name="blog/user_login.html", context={"login_form":form})
 
+# Log out
 def user_logout(request):
     logout(request)
     messages.info(request, "You have logged out successfully.") 
     return redirect('about')
 
+# Delete account permanently
 def user_delete(request):
     user = request.user
     profile = Profile.objects.get(user=user)
@@ -214,6 +230,7 @@ def user_delete(request):
     user.delete()
     return redirect('post_list')
 
+# Display profile settings for logged in user
 def user_profile(request):
     user = request.user
     profile = Profile.objects.get(user=user)
@@ -222,6 +239,7 @@ def user_profile(request):
     context = {'user': user, 'profile': profile, 'posts': posts, 'comments': comments}
     return render(request, 'blog/user_profile.html', context)
 
+# Edit profile settings
 @login_required
 def user_profile_edit(request):
     user = request.user
@@ -237,6 +255,7 @@ def user_profile_edit(request):
         form = ProfileForm(instance=profile)
     return render(request, 'blog/user_profile_edit.html', {'form': form})
 
+# Update email address through form
 @login_required
 def user_mail_edit(request):
     user = request.user
@@ -251,6 +270,7 @@ def user_mail_edit(request):
         form = MailChangeForm(instance=user)
     return render(request, 'blog/user_mail_edit.html', {'form': form})
 
+# Display user page with info, follows and posts
 def user_page(request, usernamex):
     userx = User.objects.get(username=usernamex)
     profilex = Profile.objects.get(user=userx)
