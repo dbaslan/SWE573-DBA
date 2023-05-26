@@ -73,8 +73,9 @@
         <p style="text-align:center;"><img src="{{ post.image.url }}"></p><br><br>
         {% endif %}
 
+        <br><br>
         <div class="comments">
-            <h3><b>Comments</b></h3>
+            <h3><b>Comments</b></h3><br>
             {% for comment in comments %}
               <div class="comment">
                 <p><img src="{{ comment.author.profile.avatar.url }}" alt="mdo" width="32" height="32" class="rounded-circle">   <a href="{% url 'user_page' usernamex=comment.author %}">{{ comment.author }}</a> says:</p>
@@ -91,7 +92,7 @@
                           {% include './icons/trash.svg' %} Delete
                       </a>
                   {% endif %}
-                </aside>
+                </aside> <br><br>
               </div>
             {% empty %}
               <p>No comments yet.</p>
