@@ -293,3 +293,9 @@ Mockups/
 Backups/
 MemoShare/responses.csv
 easy_maps/
+
+# Text backup files
+*.bak
+
+# Database
+*.sqlite3
