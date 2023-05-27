@@ -26,7 +26,7 @@ GOOGLE_MAPS_API_KEY = str(os.getenv('GOOGLE_MAPS_API_KEY'))
 EASY_MAPS_GOOGLE_KEY = str(os.getenv('EASY_MAPS_GOOGLE_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
