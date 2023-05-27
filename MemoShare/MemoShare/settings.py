@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import creds
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,9 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = str(os.getenv('SECRET_KEY'))
-GOOGLE_MAPS_API_KEY = str(os.getenv('GOOGLE_MAPS_API_KEY'))
-EASY_MAPS_GOOGLE_KEY = str(os.getenv('EASY_MAPS_GOOGLE_KEY'))
+SECRET_KEY = creds.SECRET_KEY
+GOOGLE_MAPS_API_KEY = creds.GOOGLE_MAPS_API_KEY
+EASY_MAPS_GOOGLE_KEY = creds.EASY_MAPS_GOOGLE_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
