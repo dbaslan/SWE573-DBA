@@ -1,10 +1,11 @@
 # Other apps
-prototype
+prototype/
 
 # Unnecessary folders
-Mockups
-snippets
-easy_maps
-Diagrams
-Backups
-startbootstrap-clean-blog-gh-pages
+Mockups/
+snippets/
+easy_maps/
+Diagrams/
+Backups/
+startbootstrap-clean-blog-gh-pages/
+.git/
