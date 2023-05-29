@@ -20,3 +20,8 @@ This repository contains the project for SWE573 Software Development Practice - 
 - [x] Start building webpage
 ### Week 6:
 - [x] Create [UML diagram](https://github.com/dbaslan/SWE573-DBA/wiki/UML-Diagrams)
+
+## Libraries and Modules Used:
+- [django-easy-maps](https://pypi.org/project/django-easy-maps/)
+- [taggit](https://pypi.org/project/django-taggit/)
+- [Pillow](https://pypi.org/project/Pillow/)
