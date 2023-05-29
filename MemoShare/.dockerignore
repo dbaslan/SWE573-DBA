@@ -1,11 +1,9 @@
-# Other apps
-prototype/
-
 # Unnecessary folders
 Mockups/
 snippets/
-easy_maps/
 Diagrams/
 Backups/
 startbootstrap-clean-blog-gh-pages/
 .git/
+.venv/
+

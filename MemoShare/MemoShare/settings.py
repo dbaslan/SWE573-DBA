@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-import creds
+
+if not os.environ.get("PRODUCTION"):
+    from dotenv import load_dotenv
+    load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,12 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = creds.SECRET_KEY
-GOOGLE_MAPS_API_KEY = creds.GOOGLE_MAPS_API_KEY
-EASY_MAPS_GOOGLE_KEY = creds.EASY_MAPS_GOOGLE_KEY
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
+GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
+EASY_MAPS_GOOGLE_KEY = os.environ.get('EASY_MAPS_GOOGLE_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -41,17 +45,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "users",
     'django.contrib.sites',
-    'taggit'
+    'taggit',
     "MemoShare",
     "blog",
-    'address',
     "location_field.apps.DefaultConfig",
     "mapbox_location_field",
     'easy_maps',
-    'django_easy_maps',
-    'easy_maps_tags',
 ]
 
 SITE_ID = 1
@@ -92,11 +92,14 @@ WSGI_APPLICATION = 'MemoShare.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'MemoShareDB',
+        'USER': 'postgres',
+        'PASSWORD': os.environ.get('DB_PASS'),
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -135,7 +138,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"))
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "blog/static"),)
 
 
 # Default primary key field type
